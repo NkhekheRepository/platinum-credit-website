@@ -9,10 +9,14 @@
 <!-- wp:group {"className":"pcl-hero","layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group pcl-hero">
 
+<!-- wp:html -->
+<div class="pcl-hero-grain" aria-hidden="true"></div>
+<!-- /wp:html -->
+
 <!-- wp:group {"layout":{"type":"constrained","contentSize":"720px"}} -->
 <div class="wp-block-group">
 <!-- wp:paragraph {"className":"pcl-eyebrow"} -->
-<p class="pcl-eyebrow">Platinum Credit Ltd</p>
+<p class="pcl-eyebrow">100% Basotho-Owned · Tier 2 Licensed by the Central Bank of Lesotho</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1,"className":"pcl-brand-grad"} -->
@@ -53,6 +57,13 @@
 <!-- /wp:group -->
 </div>
 <!-- /wp:group -->
+
+<!-- wp:html -->
+<svg class="pcl-hero-ridge" viewBox="0 0 1440 130" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 130 L0 96 L120 62 L235 88 L340 40 L470 84 L600 30 L720 74 L850 22 L980 70 L1100 44 L1230 82 L1330 56 L1440 90 L1440 130 Z" fill="#FAFCFC"/>
+    <path d="M0 96 L120 62 L235 88 L340 40 L470 84 L600 30 L720 74 L850 22 L980 70 L1100 44 L1230 82 L1330 56 L1440 90" fill="none" stroke="#8CEBEF" stroke-width="1.2" opacity=".7"/>
+</svg>
+<!-- /wp:html -->
 
 </div>
 <!-- /wp:group -->

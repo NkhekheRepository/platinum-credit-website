@@ -1,12 +1,22 @@
 /**
- * PCL Motion — reveal animations, scroll progress, counters, counters animation.
+ * PCL Motion — reveal animations, scroll progress, counters, nav glass, preloader.
  * Respects prefers-reduced-motion.
  */
 (function () {
 	'use strict';
 
-	// Bail if reduced motion preferred
 	var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	// ===== Preloader fade-out =====
+	var loader = document.getElementById('pcl-loader');
+	if (loader) {
+		window.addEventListener('load', function () {
+			setTimeout(function () {
+				loader.classList.add('done');
+				setTimeout(function () { loader.remove(); }, 700);
+			}, 400);
+		});
+	}
 
 	// ===== Scroll progress bar =====
 	var progress = document.getElementById('pcl-progress');
@@ -16,6 +26,34 @@
 			progress.style.width = (scrollY / (d.scrollHeight - innerHeight) * 100) + '%';
 		}, { passive: true });
 	}
+
+	// ===== Nav scroll glass =====
+	var header = document.querySelector('.site-header');
+	if (header) {
+		var lastY = 0;
+		window.addEventListener('scroll', function () {
+			var y = window.scrollY;
+			if (y > 40) {
+				header.classList.add('pcl-scrolled');
+			} else {
+				header.classList.remove('pcl-scrolled');
+			}
+			lastY = y;
+		}, { passive: true });
+	}
+
+	// ===== Range slider fill =====
+	function updateSliderFill(el) {
+		var min = parseFloat(el.min) || 0;
+		var max = parseFloat(el.max) || 100;
+		var val = parseFloat(el.value) || 0;
+		var pct = ((val - min) / (max - min)) * 100;
+		el.style.setProperty('--fill', pct + '%');
+	}
+	document.querySelectorAll('input[type=range]').forEach(function (el) {
+		updateSliderFill(el);
+		el.addEventListener('input', function () { updateSliderFill(el); });
+	});
 
 	if (prefersReduced) return;
 
