@@ -1,0 +1,25 @@
+.pcl-form .pcl-honeypot {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.pcl-form .wp-block-button__link {
+	border: 0;
+	cursor: pointer;
+}
+
+.pcl-form button[type="submit"][disabled] {
+	opacity: 0.6;
+	cursor: wait;
+}
+
+.pcl-form .pcl-field-error {
+	font-size: 0.875rem;
+	color: #a33a3a;
+	margin-top: 4px;
+}

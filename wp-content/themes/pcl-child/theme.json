@@ -1,0 +1,105 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"color": {
+			"defaultPalette": false,
+			"palette": [
+				{ "slug": "pcl-mint", "color": "#CAF2F1", "name": "Mint" },
+				{ "slug": "pcl-cyan", "color": "#8CEBEF", "name": "Cyan" },
+				{ "slug": "pcl-teal", "color": "#6ABAC3", "name": "Teal" },
+				{ "slug": "pcl-teal-text", "color": "#3C7A85", "name": "Teal Text (AA)" },
+				{ "slug": "pcl-lilac", "color": "#9671BD", "name": "Lilac" },
+				{ "slug": "pcl-purple", "color": "#6A408D", "name": "Purple" },
+				{ "slug": "pcl-logo-purple", "color": "#59357D", "name": "Logo Purple" },
+				{ "slug": "pcl-purple-ink", "color": "#241536", "name": "Purple Ink" },
+				{ "slug": "pcl-purple-deep", "color": "#1A0E29", "name": "Purple Deep" },
+				{ "slug": "pcl-paper", "color": "#FAFCFC", "name": "Paper" },
+				{ "slug": "pcl-text", "color": "#33283D", "name": "Text" },
+				{ "slug": "pcl-text-soft", "color": "#6A5F78", "name": "Text Soft" },
+				{ "slug": "pcl-text-inv", "color": "#F2FBFB", "name": "Text Inverse" },
+				{ "slug": "pcl-text-inv-soft", "color": "#BFD3D9", "name": "Text Inverse Soft" },
+				{ "slug": "pcl-white", "color": "#ffffff", "name": "White" }
+			]
+		},
+		"layout": {
+			"contentSize": "720px",
+			"wideSize": "1200px"
+		},
+		"spacing": {
+			"units": [ "px", "em", "rem", "%", "vw" ],
+			"spacingScale": {
+				"steps": 2
+			}
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"slug": "pcl-display",
+					"fontFamily": "'Marcellus', serif",
+					"name": "Marcellus Display",
+					"fontFace": [
+						{
+							"fontFamily": "Marcellus",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"src": ["https://fonts.gstatic.com/s/marcellus/v13/o-0QIpQxxnN5-s0fB2yC4vICcQ.woff2"]
+						}
+					]
+				},
+				{
+					"slug": "pcl-body",
+					"fontFamily": "'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+					"name": "Figtree Body",
+					"fontFace": [
+						{
+							"fontFamily": "Figtree",
+							"fontWeight": "300 800",
+							"fontStyle": "normal",
+							"src": ["https://fonts.gstatic.com/s/figtree/v12/3y5Uqr2vfIyv0w.woff2"]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "size": "0.875rem", "name": "Small" },
+				{ "slug": "medium", "size": "1rem", "name": "Medium" },
+				{ "slug": "large", "size": "1.25rem", "name": "Large" },
+				{ "slug": "x-large", "size": "clamp(1.75rem, 3vw, 2.25rem)", "name": "X-Large" },
+				{ "slug": "xx-large", "size": "clamp(2rem, 3.8vw, 3rem)", "name": "XX-Large" }
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#FAFCFC",
+			"text": "#33283D"
+		},
+		"typography": {
+			"fontFamily": "'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+			"lineHeight": "1.65"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "'Marcellus', serif",
+					"fontWeight": "400"
+				},
+				"color": {
+					"text": "#241536"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "#6ABAC3"
+				},
+				":hover": {
+					"color": {
+						"text": "#3C7A85"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,17 @@
+# Environment & secrets
+.env
+wp-config.php
+wp-content/wp-config.php
+
+# Media (regenerated/replaced; keep structure via .gitkeep)
+wp-content/uploads/
+
+# MySQL volume data
+db_data/
+
+# WP-CLI phar (re-downloaded by scripts/01-wpcli.sh)
+tools/wp-cli.phar
+
+# OS / editor noise
+.DS_Store
+*.log

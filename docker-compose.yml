@@ -1,0 +1,49 @@
+services:
+  wordpress:
+    image: wordpress:php8.3-apache
+    container_name: pcl-wordpress
+    ports:
+      - "${WP_PORT:-8080}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${DB_NAME:-pcl}
+      WORDPRESS_DB_USER: ${DB_USER:-pcl}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-pcl_local_dev}
+      WORDPRESS_DEBUG: ${WP_DEBUG:-0}
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./tools:/opt/tools
+      - ./seed:/opt/seed
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: pcl-db
+    ports:
+      - "${DB_PORT:-3307}:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-pcl}
+      MYSQL_USER: ${DB_USER:-pcl}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-pcl_local_dev}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-pcl_local_root}
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: pcl-phpmyadmin
+    ports:
+      - "${PMA_PORT:-8081}:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${DB_USER:-pcl}
+      PMA_PASSWORD: ${DB_PASSWORD:-pcl_local_dev}
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  db_data:

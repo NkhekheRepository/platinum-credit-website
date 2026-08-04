@@ -1,0 +1,151 @@
+/* PCL Estimator — premium calculator styles */
+.pcl-estimator {
+	background: var(--pcl-paper);
+	border: 1px solid var(--pcl-line);
+	border-radius: var(--pcl-r);
+	padding: clamp(24px, 4vw, 48px);
+	margin: 0 auto;
+	max-width: 720px;
+}
+
+.pcl-estimator .pcl-sub {
+	margin-bottom: 32px;
+}
+
+.pcl-estimator-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 28px;
+	margin-bottom: 32px;
+}
+
+.pcl-estimator-field label {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	font-weight: 600;
+	color: var(--pcl-purple-ink);
+	margin-bottom: 10px;
+}
+
+.pcl-estimator-field output {
+	font-family: var(--pcl-display);
+	font-size: 1.1rem;
+	color: var(--pcl-purple);
+	font-weight: 400;
+}
+
+.pcl-estimator-slider {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.pcl-step-btn {
+	width: 36px;
+	height: 36px;
+	border: 1px solid var(--pcl-line);
+	border-radius: var(--pcl-r);
+	background: var(--pcl-white, #fff);
+	color: var(--pcl-purple-ink);
+	font-size: 1.1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s ease;
+	flex-shrink: 0;
+}
+
+.pcl-step-btn:hover {
+	border-color: var(--pcl-cyan);
+	color: var(--pcl-teal-text);
+}
+
+.pcl-step-btn:focus-visible {
+	outline: 2px solid var(--pcl-cyan);
+	outline-offset: 2px;
+}
+
+input[type="range"].pcl-estimator-slider,
+input[type="range"]#pcl-amt,
+input[type="range"]#pcl-term {
+	flex: 1;
+	height: 6px;
+	-webkit-appearance: none;
+	appearance: none;
+	background: var(--pcl-line);
+	border-radius: 3px;
+	outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+	cursor: pointer;
+	box-shadow: 0 2px 8px rgba(140,235,239,.4);
+	transition: transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+	transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+	width: 22px;
+	height: 22px;
+	border: none;
+	border-radius: 50%;
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+	cursor: pointer;
+	box-shadow: 0 2px 8px rgba(140,235,239,.4);
+}
+
+.pcl-estimator-output {
+	text-align: center;
+	padding: 32px 0;
+	border-top: 1px solid var(--pcl-line);
+	border-bottom: 1px solid var(--pcl-line);
+	margin-bottom: 24px;
+}
+
+.pcl-monthly {
+	font-family: var(--pcl-display);
+	font-size: clamp(2rem, 4vw, 3rem);
+	color: var(--pcl-purple);
+	font-weight: 400;
+	margin-bottom: 4px;
+}
+
+.pcl-total {
+	font-size: 0.9rem;
+	color: var(--pcl-text-soft);
+	margin-bottom: 16px;
+}
+
+.pcl-estimator-summary {
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+	font-size: 0.85rem;
+	color: var(--pcl-text-soft);
+}
+
+.pcl-estimator-note {
+	font-size: 0.8rem;
+	color: var(--pcl-text-soft);
+	text-align: center;
+	margin-top: 16px;
+	line-height: 1.5;
+}
+
+@media (max-width: 544px) {
+	.pcl-estimator-summary {
+		flex-direction: column;
+		gap: 8px;
+		align-items: center;
+	}
+}
