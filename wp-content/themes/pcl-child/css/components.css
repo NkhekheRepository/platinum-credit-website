@@ -1,0 +1,244 @@
+/*
+ * PCL Components — Preloader, progress bar, WhatsApp, shared bits
+ */
+
+/* === Preloader === */
+#pcl-loader {
+	position: fixed;
+	inset: 0;
+	z-index: 200;
+	background: linear-gradient(160deg, var(--pcl-purple-ink), var(--pcl-logo-purple));
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 22px;
+	transition: opacity .6s ease, visibility .6s;
+}
+
+#pcl-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+#pcl-loader .pcl-loader-gem {
+	width: 110px;
+	color: var(--pcl-cyan);
+	animation: pcl-pulse 1.4s ease-in-out infinite;
+}
+
+#pcl-loader .pcl-loader-word {
+	font-family: var(--pcl-display);
+	letter-spacing: .5em;
+	text-transform: uppercase;
+	color: var(--pcl-mint);
+	font-size: .95rem;
+	padding-left: .5em;
+}
+
+@keyframes pcl-pulse {
+	0%, 100% { transform: scale(1); opacity: .85; }
+	50% { transform: scale(1.08); opacity: 1; }
+}
+
+/* === Scroll progress === */
+#pcl-progress {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 3px;
+	width: 0;
+	z-index: 120;
+	background: linear-gradient(90deg, var(--pcl-teal), var(--pcl-cyan), var(--pcl-mint));
+	box-shadow: 0 0 12px rgba(140,235,239,.7);
+}
+
+/* === WhatsApp float === */
+.pcl-whatsapp-float {
+	position: fixed;
+	right: 22px;
+	bottom: 22px;
+	z-index: 90;
+	width: 58px;
+	height: 58px;
+	border-radius: 50%;
+	background: #25D366;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 10px 30px rgba(0,0,0,.35);
+	transition: transform .25s, box-shadow .25s;
+	text-decoration: none;
+}
+
+.pcl-whatsapp-float:hover {
+	transform: scale(1.1);
+	box-shadow: 0 16px 40px rgba(37,211,102,.45);
+}
+
+.pcl-whatsapp-float svg { width: 30px; height: 30px; }
+
+@media (prefers-reduced-motion: no-preference) {
+	.pcl-whatsapp-float::after {
+		content: "";
+		position: absolute;
+		inset: -4px;
+		border-radius: 50%;
+		border: 2px solid rgba(37,211,102,.5);
+		animation: pcl-waPing 2.2s ease-out infinite;
+	}
+	@keyframes pcl-waPing {
+		0% { transform: scale(.9); opacity: .9; }
+		70%, 100% { transform: scale(1.35); opacity: 0; }
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.pcl-whatsapp-float::after { animation: none; display: none; }
+}
+
+/* === Motion system === */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.pcl-reveal {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+	}
+	.pcl-reveal.pcl-in { opacity: 1; transform: none; }
+
+	.pcl-stagger > * {
+		opacity: 0;
+		transform: translateY(26px);
+		transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+	}
+	.pcl-stagger.pcl-in > * { opacity: 1; transform: none; }
+	.pcl-stagger.pcl-in > *:nth-child(1) { transition-delay: .05s; }
+	.pcl-stagger.pcl-in > *:nth-child(2) { transition-delay: .14s; }
+	.pcl-stagger.pcl-in > *:nth-child(3) { transition-delay: .23s; }
+	.pcl-stagger.pcl-in > *:nth-child(4) { transition-delay: .32s; }
+	.pcl-stagger.pcl-in > *:nth-child(5) { transition-delay: .41s; }
+	.pcl-stagger.pcl-in > *:nth-child(6) { transition-delay: .50s; }
+}
+
+/* === Link distinguishability === */
+.entry-content a,
+.wp-block-column p a,
+.wp-block-group p a,
+.wp-block-quote a,
+.wp-block-list a {
+	color: #1a6d73;
+	text-decoration: underline;
+	text-decoration-color: rgba(26,109,115,.5);
+	text-underline-offset: 3px;
+	text-decoration-thickness: 1px;
+}
+
+.entry-content a:hover,
+.wp-block-column p a:hover,
+.wp-block-group p a:hover,
+.wp-block-quote a:hover,
+.wp-block-list a:hover {
+	text-decoration-color: var(--pcl-teal);
+}
+
+/* === Forms (pcl-core) === */
+.pcl-form label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--pcl-purple-ink); }
+
+.pcl-form input[type="text"],
+.pcl-form input[type="email"],
+.pcl-form input[type="tel"],
+.pcl-form input[type="number"],
+.pcl-form textarea,
+.pcl-form select {
+	width: 100%;
+	border: 1px solid var(--pcl-line);
+	border-radius: var(--pcl-r);
+	padding: 10px 14px;
+	background-color: var(--pcl-white, #fff);
+	color: var(--pcl-text);
+	font-family: var(--pcl-body);
+}
+
+.pcl-form input:focus,
+.pcl-form textarea:focus,
+.pcl-form select:focus {
+	border-color: var(--pcl-cyan);
+	outline: 2px solid rgba(140,235,239,.35);
+	outline-offset: 1px;
+}
+
+.pcl-form .pcl-field { margin-bottom: 20px; }
+.pcl-form .pcl-required { color: var(--pcl-teal); }
+
+.pcl-form-status { border-radius: var(--pcl-r); padding: 12px 16px; margin-bottom: 20px; font-weight: 600; }
+.pcl-form-status.is-success { background-color: #e7f5ee; color: #1a6b42; border: 1px solid #bfe5cf; }
+.pcl-form-status.is-error { background-color: #fdecec; color: #a33a3a; border: 1px solid #f5c6c6; }
+.pcl-form-status:empty { display: none; }
+.pcl-form [aria-invalid="true"] { border-color: #c0392b; }
+
+/* === CTA band === */
+.pcl-cta {
+	background: linear-gradient(120deg, var(--pcl-purple-ink) 0%, var(--pcl-purple-deep) 100%);
+	color: var(--pcl-text-inv);
+	border-radius: var(--pcl-r);
+	padding: clamp(32px, 5vw, 64px);
+}
+
+.pcl-cta h2 { color: var(--pcl-mint); }
+
+.pcl-cta .wp-block-button__link {
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+	color: var(--pcl-purple-ink);
+}
+
+.pcl-cta .wp-block-button__link:hover {
+	background: linear-gradient(120deg, var(--pcl-teal), var(--pcl-cyan));
+	color: var(--pcl-purple-ink);
+	box-shadow: 0 10px 32px rgba(140,235,239,.4);
+	transform: translateY(-2px);
+}
+
+/* === Contact strip === */
+.pcl-contact-item {
+	background-color: var(--pcl-white, #fff);
+	border: 1px solid var(--pcl-line);
+	border-radius: var(--pcl-r);
+	padding: 20px 24px;
+	box-shadow: 0 4px 16px rgba(106,64,141,.08);
+	height: 100%;
+}
+
+.pcl-contact-item .pcl-icon { color: var(--pcl-cyan); }
+.pcl-contact-item h3 { font-family: var(--pcl-display); margin: 8px 0 4px; font-size: 1rem; }
+
+/* === Stats === */
+.pcl-stat { text-align: center; }
+.pcl-stat .pcl-stat-number { color: var(--pcl-purple-ink); font-family: var(--pcl-display); font-size: clamp(2.25rem, 4vw, 3rem); font-weight: 400; line-height: 1.1; }
+.pcl-band-navy .pcl-stat-number { color: var(--pcl-mint); }
+.pcl-stat .pcl-stat-label { color: var(--pcl-text-soft); margin-top: 4px; }
+.pcl-band-navy .pcl-stat-label { color: var(--pcl-text-inv-soft); }
+
+/* === Testimonials === */
+.pcl-quote { background-color: var(--pcl-white, #fff); border-left: 4px solid var(--pcl-teal); border-radius: var(--pcl-r); padding: 24px; box-shadow: 0 4px 16px rgba(106,64,141,.08); }
+.pcl-quote blockquote { margin: 0 0 12px; font-size: 1.0625rem; line-height: 1.6; }
+.pcl-quote cite { color: var(--pcl-text-soft); font-style: normal; font-weight: 600; font-size: 0.875rem; }
+
+/* === Dividers === */
+.pcl-divider { width: 36px; height: 1px; background: linear-gradient(90deg, var(--pcl-cyan), var(--pcl-teal)); }
+.pcl-divider-wide { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--pcl-line), transparent); }
+
+/* === Band helpers === */
+.pcl-band { background-color: var(--pcl-paper); }
+.pcl-band-navy { background: linear-gradient(180deg, var(--pcl-purple-ink), var(--pcl-purple-deep) 130%); color: var(--pcl-text-inv); }
+.pcl-band-navy h1, .pcl-band-navy h2, .pcl-band-navy h3, .pcl-band-navy h4, .pcl-band-navy .wp-block-heading { color: var(--pcl-mint); }
+.pcl-band-navy a:not(.wp-block-button__link) { color: var(--pcl-cyan); }
+.pcl-eyebrow { color: var(--pcl-teal-text); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase; display: flex; align-items: center; gap: 14px; }
+.pcl-eyebrow::before { content: ""; width: 36px; height: 1px; background: linear-gradient(90deg, var(--pcl-cyan), var(--pcl-teal)); }
+.pcl-band-navy .pcl-eyebrow { color: var(--pcl-cyan); }

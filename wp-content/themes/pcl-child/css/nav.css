@@ -1,0 +1,119 @@
+/*
+ * PCL Nav — Fixed transparent nav, brand, links, mobile menu, scroll glass
+ */
+.pcl-site-nav,
+.pcl-nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	transition: background .4s, box-shadow .4s, height .4s;
+	background: rgba(26,14,41,.82);
+	backdrop-filter: blur(16px);
+	box-shadow: 0 1px 0 var(--pcl-line-dark);
+}
+
+.pcl-site-nav.scrolled,
+.pcl-nav.scrolled {
+	background: rgba(26,14,41,.86);
+	backdrop-filter: blur(16px);
+	box-shadow: 0 1px 0 var(--pcl-line-dark);
+}
+
+.pcl-nav-in {
+	max-width: var(--pcl-max);
+	margin: 0 auto;
+	padding: 0 28px;
+	height: 84px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	transition: height .4s;
+}
+
+.pcl-nav.scrolled .pcl-nav-in { height: 68px; }
+
+.pcl-brand {
+	display: flex;
+	align-items: center;
+	gap: 13px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.pcl-brand-gem,
+.pcl-logo-gem {
+	width: 38px;
+	color: var(--pcl-cyan);
+	transition: transform .5s;
+}
+
+.pcl-brand:hover .pcl-brand-gem,
+.pcl-brand:hover .pcl-logo-gem { transform: rotate(-14deg); }
+
+.pcl-brand-text,
+.pcl-brand-name {
+	font-family: var(--pcl-display);
+	font-size: 1.08rem;
+	letter-spacing: .12em;
+	text-transform: uppercase;
+	color: var(--pcl-text-inv);
+}
+
+.pcl-brand-text small,
+.pcl-brand-name small {
+	display: block;
+	font-family: var(--pcl-body);
+	font-size: .54rem;
+	letter-spacing: .4em;
+	color: var(--pcl-teal);
+	margin-top: 2px;
+}
+
+.pcl-nav-links {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+}
+
+.pcl-nav-links a {
+	color: var(--pcl-text-inv);
+	font-size: .85rem;
+	font-weight: 500;
+	letter-spacing: .05em;
+	position: relative;
+	transition: color .25s;
+	text-decoration: none;
+}
+
+.pcl-nav-links a:not(.btn)::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -6px;
+	width: 0;
+	height: 1.5px;
+	background: var(--pcl-cyan);
+	transition: width .3s;
+}
+
+.pcl-nav-links a:not(.btn):hover,
+.pcl-nav-links a:not(.pcl-btn):hover { color: var(--pcl-cyan); }
+.pcl-nav-links a:not(.btn):hover::after,
+.pcl-nav-links a:not(.pcl-btn):hover::after { width: 100%; }
+
+.pcl-menu-btn {
+	display: none;
+	background: none;
+	border: 1px solid var(--pcl-line-dark);
+	color: var(--pcl-mint);
+	padding: 8px 14px;
+	border-radius: var(--pcl-r);
+	font-size: .8rem;
+	letter-spacing: .1em;
+	cursor: pointer;
+	font-family: var(--pcl-body);
+}
+
+/* Mobile — handled in responsive.css */

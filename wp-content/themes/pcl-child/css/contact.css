@@ -1,0 +1,60 @@
+/*
+ * PCL Contact — Contact list + hours panel
+ */
+.pcl-contact {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 70px;
+	align-items: start;
+}
+
+.pcl-c-list {
+	list-style: none;
+	margin-top: 34px;
+}
+
+.pcl-c-list li {
+	display: flex;
+	gap: 18px;
+	padding: 22px 0;
+	border-top: 1px solid var(--pcl-line-dark);
+	align-items: flex-start;
+	transition: padding-left .3s;
+}
+
+.pcl-c-list li:hover { padding-left: 8px; }
+
+.pcl-c-list svg { flex: none; margin-top: 3px; }
+
+.pcl-c-list strong {
+	display: block;
+	font-size: .73rem;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--pcl-text-inv-soft);
+	font-weight: 700;
+	margin-bottom: 4px;
+}
+
+.pcl-c-list a, .pcl-c-list span { color: var(--pcl-mint); font-size: 1.02rem; }
+.pcl-c-list a:hover { color: var(--pcl-cyan); }
+
+.pcl-hours {
+	background: rgba(202,242,241,.05);
+	border: 1px solid var(--pcl-line-dark);
+	border-radius: var(--pcl-r);
+	padding: 42px;
+	backdrop-filter: blur(8px);
+}
+
+.pcl-hours h3 { color: var(--pcl-mint); font-size: 1.3rem; margin-bottom: 22px; }
+
+.pcl-hours table { width: 100%; border-collapse: collapse; font-size: .94rem; }
+
+.pcl-hours td {
+	padding: 11px 0;
+	border-top: 1px solid var(--pcl-line-dark);
+	color: var(--pcl-text-inv-soft);
+}
+
+.pcl-hours td:last-child { text-align: right; color: var(--pcl-mint); }

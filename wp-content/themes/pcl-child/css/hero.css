@@ -1,0 +1,286 @@
+/*
+ * PCL Hero — 2-column grid, aurora, shards, gem, scroll cue, ridge
+ */
+.pcl-hero {
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: var(--pcl-text-inv);
+	position: relative;
+	overflow: hidden;
+	background: var(--pcl-purple-deep);
+	padding-top: 84px;
+}
+
+/* Aurora */
+.pcl-aurora {
+	position: absolute;
+	inset: -20%;
+	pointer-events: none;
+	filter: blur(70px);
+	opacity: .45;
+}
+
+.pcl-aurora::before,
+.pcl-aurora::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+}
+
+.pcl-aurora::before {
+	background: radial-gradient(38% 42% at 28% 32%, var(--pcl-purple) 0%, transparent 68%),
+		radial-gradient(30% 34% at 72% 24%, var(--pcl-lilac) 0%, transparent 70%);
+}
+
+.pcl-aurora::after {
+	background: radial-gradient(34% 40% at 74% 72%, var(--pcl-teal) 0%, transparent 68%),
+		radial-gradient(26% 30% at 22% 80%, rgba(140,235,239,.75) 0%, transparent 72%);
+}
+
+/* Grain */
+.pcl-hero-grain {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	opacity: .35;
+	background-image: radial-gradient(rgba(255,255,255,.06) .6px, transparent .7px);
+	background-size: 4px 4px;
+}
+
+/* Shards */
+.pcl-shards {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.pcl-shard {
+	position: absolute;
+	background: linear-gradient(135deg, rgba(140,235,239,.35), rgba(150,113,189,.22));
+	clip-path: polygon(50% 0, 100% 74%, 12% 100%);
+	width: 26px;
+	height: 26px;
+	opacity: .55;
+}
+
+/* Hero grid — 2-column layout */
+div.pcl-hero-grid,
+.pcl-hero-grid {
+	display: grid !important;
+	grid-template-columns: 1.12fr .88fr !important;
+	gap: 50px !important;
+	align-items: center !important;
+	max-width: var(--pcl-max) !important;
+	margin: 0 auto !important;
+	padding: 40px 28px 80px;
+	position: relative;
+	z-index: 2;
+	width: 100%;
+}
+
+/* Kill Gutenberg layout overrides on hero grid children */
+.pcl-hero-grid > .wp-block-group {
+	display: block !important;
+	max-width: none !important;
+	width: auto !important;
+	margin: 0 !important;
+}
+
+/* Gem column */
+.pcl-hero-gem {
+	display: flex !important;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: visible;
+}
+
+.pcl-hero-grid > .wp-block-group {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Hero text */
+.pcl-hero .eyebrow { color: var(--pcl-mint); }
+.pcl-hero .eyebrow::before { background: linear-gradient(90deg, #fff, var(--pcl-mint)); }
+
+.pcl-hero h1,
+.pcl-hero h1.wp-block-heading,
+.pcl-hero h1.has-text-color,
+.pcl-hero .wp-block-heading {
+	font-size: clamp(2.7rem, 6vw, 4.9rem);
+	line-height: 1.06;
+	margin: 28px 0 26px;
+	color: #ffffff !important;
+	font-family: var(--pcl-display) !important;
+}
+
+.pcl-hero .pcl-sub,
+.pcl-hero p.has-text-color {
+	color: #ffffff !important;
+	max-width: 52ch;
+	font-size: 1.14rem;
+	font-weight: 300;
+	line-height: 1.7;
+}
+
+.pcl-hero-ctas {
+	display: flex;
+	gap: 16px;
+	margin-top: 44px;
+	flex-wrap: wrap;
+}
+
+.pcl-hero-meta {
+	display: flex;
+	gap: 46px;
+	margin-top: 64px;
+	flex-wrap: wrap;
+}
+
+.pcl-hero-meta div {
+	border-left: 1px solid rgba(255,255,255,.28);
+	padding-left: 18px;
+}
+
+.pcl-hero-meta strong {
+	display: block;
+	font-family: var(--pcl-display);
+	font-size: 1.6rem;
+	letter-spacing: .02em;
+	color: #fff;
+}
+
+.pcl-hero-meta span {
+	font-size: .75rem;
+	letter-spacing: .16em;
+	text-transform: uppercase;
+	color: rgba(255,255,255,.7);
+}
+
+/* Gem column */
+.pcl-hero-gem {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.pcl-gem-wrap {
+	position: relative;
+	width: min(340px, 80%);
+	aspect-ratio: 1/1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pcl-gem-halo {
+	position: absolute;
+	inset: 8%;
+	border-radius: 50%;
+	background: radial-gradient(closest-side, rgba(140,235,239,.22), transparent 70%);
+	pointer-events: none;
+}
+
+.pcl-gem-fallback {
+	width: min(260px, 70%);
+	color: rgba(255,255,255,.95);
+	filter: drop-shadow(0 24px 60px rgba(26,14,41,.5));
+}
+
+.pcl-gem-caption {
+	position: absolute;
+	bottom: -4px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: .66rem;
+	letter-spacing: .24em;
+	text-transform: uppercase;
+	color: rgba(255,255,255,.6);
+	white-space: nowrap;
+}
+
+/* Scroll cue */
+.pcl-scroll-cue {
+	position: absolute;
+	bottom: 26px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	color: rgba(255,255,255,.55);
+	font-size: .66rem;
+	letter-spacing: .3em;
+	text-transform: uppercase;
+}
+
+.pcl-scroll-cue span {
+	display: block;
+	width: 1px;
+	height: 44px;
+	background: linear-gradient(var(--pcl-cyan), transparent);
+}
+
+/* Ridge */
+.pcl-hero-ridge {
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+	display: block;
+}
+
+.pcl-hero-ridge path:last-child {
+	stroke: var(--pcl-cyan);
+	stroke-width: 1.2;
+	opacity: .7;
+}
+
+/* Word animation */
+@media (prefers-reduced-motion: no-preference) {
+	.pcl-hero h1 .w {
+		display: inline-block;
+		opacity: 0;
+		transform: translateY(38px) rotate(2deg);
+		animation: pcl-wordUp .9s cubic-bezier(.16,1,.3,1) forwards;
+	}
+	@keyframes pcl-wordUp { to { opacity: 1; transform: none; } }
+
+	.pcl-shard {
+		animation: pcl-drift var(--pcl-dur, 16s) ease-in-out infinite alternate;
+	}
+	@keyframes pcl-drift {
+		from { transform: translate(0,0) rotate(0); }
+		to { transform: translate(var(--pcl-dx, 30px), var(--pcl-dy, -46px)) rotate(var(--pcl-rot, 18deg)); }
+	}
+
+	.pcl-aurora { animation: pcl-aur1 22s ease-in-out infinite alternate; }
+	.pcl-aurora::after { animation: pcl-aur2 26s ease-in-out infinite alternate; }
+	@keyframes pcl-aur1 { from { transform: translate(-6%,-4%) scale(1); } to { transform: translate(7%,6%) scale(1.15); } }
+	@keyframes pcl-aur2 { from { transform: translate(5%,3%) scale(1.1); } to { transform: translate(-8%,-6%) scale(.95); } }
+
+	.pcl-scroll-cue span { animation: pcl-cue 1.8s ease-in-out infinite; }
+	@keyframes pcl-cue {
+		0% { transform: scaleY(0); transform-origin: top; }
+		45% { transform: scaleY(1); transform-origin: top; }
+		55% { transform: scaleY(1); transform-origin: bottom; }
+		100% { transform: scaleY(0); transform-origin: bottom; }
+	}
+
+	.pcl-brand-grad { animation: pcl-sheen 7s ease-in-out infinite; }
+	@keyframes pcl-sheen { 0%,100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.pcl-hero h1 .w { opacity: 1; }
+}
+
+/* Responsive — handled in responsive.css */

@@ -1,13 +1,13 @@
 <?php
 /**
  * Title: Stats Band
- * Description: Counters marquee band with animated numbers.
+ * Description: Counters band with animated numbers on white background.
  * Categories: pcl
- * Keywords: stats, counters, numbers, marquee
+ * Keywords: stats, counters, numbers
  */
 ?>
-<!-- wp:group {"className":"pcl-band-navy pcl-section-tight","data-count-target":"true","layout":{"type":"constrained","contentSize":"1200px"}} -->
-<div class="wp-block-group pcl-band-navy pcl-section-tight" data-count-target="true">
+<!-- wp:group {"className":"pcl-band pcl-section-tight","data-count-target":"true","id":"countersBand","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group pcl-band pcl-section-tight" data-count-target="true" id="countersBand">
 
 <!-- wp:columns {"verticalAlignment":"center","className":"pcl-stagger"} -->
 <div class="wp-block-columns are-vertically-aligned-center pcl-stagger">

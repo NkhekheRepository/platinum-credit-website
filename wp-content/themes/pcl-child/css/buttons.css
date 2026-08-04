@@ -1,0 +1,111 @@
+/*
+ * PCL Buttons — All variants with sheen sweep
+ */
+.btn,
+.wp-block-button__link,
+.ast-button,
+.button,
+input[type="submit"] {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 30px;
+	border-radius: var(--pcl-r);
+	font-weight: 700;
+	font-size: .85rem;
+	letter-spacing: .09em;
+	text-transform: uppercase;
+	transition: all .3s;
+	border: 1px solid transparent;
+	cursor: pointer;
+	font-family: var(--pcl-body);
+	position: relative;
+	overflow: hidden;
+}
+
+/* Sheen sweep */
+.btn::before,
+.wp-block-button__link::before,
+.ast-button::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: -80%;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
+	transform: skewX(-20deg);
+	transition: left .55s ease;
+}
+
+.btn:hover::before,
+.wp-block-button__link:hover::before,
+.ast-button:hover::before { left: 130%; }
+
+/* Brand button */
+.btn-brand,
+.wp-block-button__link {
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+	color: var(--pcl-purple-ink);
+}
+
+.btn-brand:hover,
+.wp-block-button__link:hover,
+.ast-button:hover {
+	box-shadow: 0 10px 32px rgba(140,235,239,.4);
+	transform: translateY(-2px);
+	color: var(--pcl-purple-ink);
+}
+
+/* Purple button */
+.btn-purple {
+	background: linear-gradient(120deg, var(--pcl-purple), var(--pcl-lilac));
+	color: #fff;
+}
+
+.btn-purple:hover {
+	box-shadow: 0 10px 32px rgba(150,113,189,.4);
+	transform: translateY(-2px);
+}
+
+/* Ghost button */
+.btn-ghost {
+	border-color: rgba(202,242,241,.4);
+	color: var(--pcl-mint);
+	background: transparent;
+}
+
+.btn-ghost:hover {
+	border-color: var(--pcl-cyan);
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+/* Outline button */
+.wp-block-button.is-style-outline .wp-block-button__link {
+	background: transparent;
+	border: 1px solid var(--pcl-line-dark);
+	color: var(--pcl-teal-text);
+}
+
+.wp-block-button.is-style-outline .wp-block-button__link:hover {
+	border-color: var(--pcl-cyan);
+	background: rgba(140,235,239,.1);
+	color: var(--pcl-teal-text);
+}
+
+/* Fill button */
+.wp-block-button.is-style-fill .wp-block-button__link {
+	background: var(--pcl-purple-ink);
+	color: var(--pcl-text-inv);
+}
+
+.wp-block-button.is-style-fill .wp-block-button__link:hover {
+	background: var(--pcl-purple);
+	color: var(--pcl-text-inv);
+	box-shadow: 0 10px 32px rgba(150,113,189,.4);
+	transform: translateY(-2px);
+}
+
+/* Nav CTA sizing */
+.nav-cta { padding: 11px 24px; }

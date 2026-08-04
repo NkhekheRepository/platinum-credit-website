@@ -1,0 +1,70 @@
+/*
+ * PCL Responsive — All media queries in one place
+ */
+
+/* === Tablet (980px) === */
+@media (max-width: 980px) {
+	.pcl-cards,
+	.pcl-steps,
+	.pcl-calc,
+	.pcl-contact,
+	.pcl-about,
+	.pcl-afford,
+	.pcl-why {
+		grid-template-columns: 1fr;
+	}
+
+	.pcl-values { grid-template-columns: 1fr 1fr; }
+	.pcl-counters-in { grid-template-columns: 1fr 1fr; gap: 30px; }
+	section { padding: 88px 0; }
+
+	.pcl-hero-meta { flex-wrap: wrap; gap: 26px; }
+	.pcl-hero-grid { grid-template-columns: 1fr; padding: 20px 28px 90px; }
+	.pcl-hero-gem { order: -1; }
+	.pcl-gem-fallback { width: 170px; }
+
+	/* Nav mobile */
+	.pcl-nav-links {
+		display: none;
+		position: absolute;
+		top: 68px;
+		left: 0;
+		right: 0;
+		background: var(--pcl-purple-deep);
+		flex-direction: column;
+		padding: 24px 28px;
+		gap: 20px;
+		border-bottom: 1px solid var(--pcl-line-dark);
+		align-items: flex-start;
+	}
+	.pcl-nav-links.open { display: flex; }
+	.pcl-menu-btn { display: block; }
+	.pcl-site-nav,
+	.pcl-nav { background: rgba(26,14,41,.86); backdrop-filter: blur(16px); }
+}
+
+/* === Mobile (640px) === */
+@media (max-width: 640px) {
+	.pcl-steps,
+	.pcl-why,
+	.pcl-values { grid-template-columns: 1fr; gap: 28px; }
+
+	.pcl-rate-band { padding: 32px 28px; }
+	.pcl-counters-in { grid-template-columns: 1fr 1fr; }
+}
+
+/* === Small mobile (544px) === */
+@media (max-width: 544px) {
+	.pcl-card,
+	.pcl-contact-item { padding: 20px 16px; }
+
+	.pcl-cta { padding: 28px 20px; }
+
+	.pcl-hero { padding: 60px 0; }
+	.pcl-hero-meta { flex-direction: column; gap: 12px; }
+
+	.pcl-afford-form,
+	.pcl-afford-out { padding: 28px 20px; }
+
+	.pcl-calc-panel { padding: 24px; }
+}
