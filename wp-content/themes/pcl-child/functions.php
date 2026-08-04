@@ -151,3 +151,80 @@ function pcl_whatsapp_float() {
 	<?php
 }
 add_action( 'wp_footer', 'pcl_whatsapp_float' );
+
+// ========== SEO: Open Graph + canonical + JSON-LD ==========
+
+function pcl_seo_meta() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	$site_name = 'Platinum Credit Ltd';
+	$site_url  = home_url();
+	$desc_default = 'Platinum Credit Ltd is a 100% Basotho-owned, Tier 2 CBL-licensed microfinance institution in Maseru, offering competitive interest rates for individuals and MSMEs across Lesotho.';
+
+	if ( is_front_page() ) {
+		$title = 'Platinum Credit Ltd — Re Lora Le Uena | Maseru, Lesotho';
+		$desc  = $desc_default;
+		$url   = $site_url;
+	} elseif ( is_singular( 'page' ) ) {
+		$title = get_the_title() . ' — ' . $site_name;
+		$desc  = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ?: get_the_content() ), 30, '…' );
+		$url   = get_permalink();
+	} else {
+		return;
+	}
+
+	$og_image = $site_url . '/wp-content/themes/pcl-child/assets/og-image.png';
+
+	// Canonical
+	echo '<link rel="canonical" href="' . esc_url( $url ) . "\" />\n";
+
+	// Open Graph
+	echo '<meta property="og:type" content="website" />' . "\n";
+	echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
+	echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
+	echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+	echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
+	echo '<meta property="og:image" content="' . esc_url( $og_image ) . '" />' . "\n";
+	echo '<meta property="og:locale" content="en_LS" />' . "\n";
+
+	// Twitter Card
+	echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
+	echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
+	echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+
+	// JSON-LD FinancialService
+	$jsonld = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => 'FinancialService',
+		'name'        => 'Platinum Credit Ltd',
+		'description' => $desc_default,
+		'url'         => $site_url,
+		'telephone'   => array( '+26622324412', '+26652011000' ),
+		'email'       => 'info@pcl.co.ls',
+		'address'     => array(
+			'@type'           => 'PostalAddress',
+			'streetAddress'   => 'Thulo Building',
+			'addressLocality' => 'Maseru',
+			'postalCode'      => '100',
+			'addressCountry'  => 'LS',
+		),
+		'areaServed'  => array(
+			'@type' => 'Country',
+			'name'  => 'Lesotho',
+		),
+		'founder'     => array(
+			'@type' => 'Organization',
+			'name'  => 'Platinum Credit Ltd',
+		),
+		'sameAs'      => array(
+			'https://www.facebook.com/profile.php?id=61576228466083',
+			'https://wa.me/26669457676',
+			'https://www.pcl.co.ls',
+		),
+	);
+
+	echo '<script type="application/ld+json">' . wp_json_encode( $jsonld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'pcl_seo_meta', 1 );

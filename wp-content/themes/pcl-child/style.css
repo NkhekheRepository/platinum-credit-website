@@ -484,6 +484,58 @@ body.page-template-default .entry-header {
 	pointer-events: none;
 }
 
+.pcl-card {
+	position: relative;
+	overflow: hidden;
+}
+
+/* ---------- Step key (How It Works) ---------- */
+.pcl-step-key {
+	font-family: var(--pcl-display);
+	font-size: 1rem;
+	letter-spacing: 0.24em;
+	color: var(--pcl-cyan);
+	margin-bottom: 4px;
+}
+
+/* ---------- Rate band ---------- */
+.pcl-rate-band {
+	background: linear-gradient(120deg, var(--pcl-purple), var(--pcl-lilac));
+	border-radius: var(--pcl-r);
+	padding: clamp(32px, 5vw, 48px);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 24px;
+	flex-wrap: wrap;
+	color: #fff;
+	position: relative;
+	overflow: hidden;
+}
+
+.pcl-rate-band::before {
+	content: "";
+	position: absolute;
+	top: -60%;
+	right: -6%;
+	width: 300px;
+	height: 300px;
+	background: radial-gradient(closest-side, rgba(140,235,239,.35), transparent 70%);
+}
+
+.pcl-rate-band h3 {
+	font-family: var(--pcl-display);
+	font-size: clamp(1.5rem, 3vw, 2rem);
+	color: #fff;
+	position: relative;
+}
+
+.pcl-rate-band .wp-block-button__link {
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+	color: var(--pcl-purple-ink);
+	flex: none;
+}
+
 /* ---------- Premium tabular figures ---------- */
 .pcl-tabular {
 	font-variant-numeric: tabular-nums;
@@ -534,9 +586,7 @@ body.page-template-default .entry-header {
 	position: relative;
 	background: linear-gradient(160deg, var(--pcl-purple-deep), var(--pcl-purple-ink) 130%);
 	color: var(--pcl-text-inv);
-	min-height: 85vh;
-	display: flex;
-	align-items: center;
+	padding: clamp(80px, 12vw, 140px) 0;
 	overflow: hidden;
 }
 
@@ -563,7 +613,7 @@ body.page-template-default .entry-header {
 	gap: 32px;
 	margin-top: 32px;
 	padding-top: 24px;
-	border-top: 1px solid var(--pcl-line);
+	border-top: 1px solid var(--pcl-line-dark);
 }
 
 .pcl-hero-meta div {
@@ -711,7 +761,7 @@ body.page-template-default .entry-header {
 	}
 
 	.pcl-hero {
-		min-height: 70vh;
+		padding: 60px 0;
 	}
 
 	.pcl-hero-meta {

@@ -1,17 +1,51 @@
-# Environment & secrets
-.env
-wp-config.php
-wp-content/wp-config.php
+# WordPress core (managed by Docker)
+wp-admin/
+wp-includes/
+wp-login.php
+wp-settings.php
+wp-*.php
+index.php
+license.txt
+readme.html
+xmlrpc.php
 
-# Media (regenerated/replaced; keep structure via .gitkeep)
+# Astra parent theme (managed by WP)
+wp-content/themes/astra/
+
+# Plugins managed by WP
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php/
+
+# Uploads and generated files
 wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
 
-# MySQL volume data
-db_data/
+# Vendor / dependencies
+vendor/
+node_modules/
 
-# WP-CLI phar (re-downloaded by scripts/01-wpcli.sh)
-tools/wp-cli.phar
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
 
-# OS / editor noise
+# OS files
 .DS_Store
-*.log
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+
+# Reports and temp
+*.report.html
+lighthouse-report.json
+/tmp/
+tools/
