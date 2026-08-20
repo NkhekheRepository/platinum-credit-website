@@ -51,8 +51,8 @@
 	.pcl-gem-fallback { width: min(170px, 55%); }
 	.pcl-hero h1 { font-size: clamp(2rem, 5.5vw, 3.2rem); }
 	.pcl-hero .pcl-sub { font-size: 1.05rem; max-width: none; }
-	.pcl-hero-ctas { flex-direction: row; gap: 12px; }
-	.pcl-hero-ctas .wp-block-button { flex: 1; min-width: 0; }
+	.pcl-hero-ctas { flex-direction: column; gap: 10px; }
+	.pcl-hero-ctas .wp-block-button { width: 100%; }
 	.pcl-hero-ctas .wp-block-button__link { width: 100%; justify-content: center; }
 	.pcl-hero-meta { gap: 24px; margin-top: 40px; }
 	.pcl-hero-meta strong { font-size: 1.3rem; }
@@ -117,7 +117,11 @@
 
 	/* Footer */
 	.pcl-footer-top { flex-direction: column; gap: 20px; align-items: flex-start; }
-	.pcl-footer-links { flex-wrap: wrap; gap: 16px; }
+	.pcl-footer-links { 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 16px 24px; 
+}
 }
 
 /* === Mobile (640px) === */

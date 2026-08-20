@@ -12,8 +12,15 @@
 .pcl-marq-track {
 	display: flex;
 	gap: 64px;
-	width: max-content;
+	width: auto;
+	min-width: 100%;
 	will-change: transform;
+}
+
+@media (max-width: 640px) {
+	.pcl-marquee {
+		overflow-x: clip;
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {

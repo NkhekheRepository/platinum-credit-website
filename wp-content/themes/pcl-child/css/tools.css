@@ -82,30 +82,30 @@ input[type=range] {
 	width: 100%;
 	-webkit-appearance: none;
 	appearance: none;
-	height: 3px;
-	border-radius: 3px;
+	height: 44px;
+	border-radius: 22px;
 	background: linear-gradient(90deg, var(--pcl-cyan) var(--fill, 50%), rgba(202,242,241,.18) var(--fill, 50%));
 	outline-offset: 6px;
 }
 
 input[type=range]::-webkit-slider-thumb {
 	-webkit-appearance: none;
-	width: 22px;
-	height: 22px;
+	width: 28px;
+	height: 28px;
 	border-radius: 50%;
-	background: linear-gradient(135deg, var(--pcl-cyan), var(--pcl-teal));
-	border: 2px solid var(--pcl-mint);
+	background: var(--pcl-teal-dark);
+	border: 2px solid var(--pcl-white);
 	cursor: pointer;
-	box-shadow: 0 0 16px rgba(140,235,239,.6);
+	box-shadow: 0 0 16px rgba(44,114,122,.6);
 	transition: transform .25s var(--pcl-ease), box-shadow .25s;
 }
 
 input[type=range]::-moz-range-thumb {
-	width: 22px;
-	height: 22px;
+	width: 28px;
+	height: 28px;
 	border-radius: 50%;
-	background: linear-gradient(135deg, var(--pcl-cyan), var(--pcl-teal));
-	border: 2px solid var(--pcl-mint);
+	background: var(--pcl-teal-dark);
+	border: 2px solid var(--pcl-white);
 	cursor: pointer;
 	transition: transform .25s var(--pcl-ease), box-shadow .25s;
 }
@@ -218,7 +218,7 @@ input[type=range]:active::-moz-range-thumb {
 .pcl-afford-form {
 	background: #fff;
 	border: 1px solid var(--pcl-line);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	padding: 46px 42px;
 	display: flex;
 	flex-direction: column;
@@ -240,7 +240,7 @@ input[type=range]:active::-moz-range-thumb {
 	display: flex;
 	align-items: center;
 	border: 1px solid var(--pcl-line);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	background: var(--pcl-paper);
 	transition: all .25s;
 }
@@ -271,7 +271,7 @@ input[type=range]:active::-moz-range-thumb {
 .pcl-afford-form select {
 	width: 100%;
 	border: 1px solid var(--pcl-line);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	background: var(--pcl-paper);
 	padding: 13px 14px;
 	font-family: var(--pcl-body);
@@ -289,7 +289,7 @@ input[type=range]:active::-moz-range-thumb {
 /* Dropzone */
 .pcl-dropzone {
 	border: 1.5px dashed rgba(106,64,141,.35);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	background: var(--pcl-paper);
 	padding: 26px 20px;
 	text-align: center;
@@ -330,7 +330,7 @@ input[type=range]:active::-moz-range-thumb {
 	background: linear-gradient(170deg, var(--pcl-purple-ink), var(--pcl-logo-purple) 160%);
 	color: var(--pcl-text-inv);
 	padding: 46px 42px;
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	box-shadow: 0 24px 60px rgba(36,21,54,.35);
 }
 
