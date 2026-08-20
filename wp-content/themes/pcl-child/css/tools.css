@@ -97,6 +97,7 @@ input[type=range]::-webkit-slider-thumb {
 	border: 2px solid var(--pcl-mint);
 	cursor: pointer;
 	box-shadow: 0 0 16px rgba(140,235,239,.6);
+	transition: transform .25s var(--pcl-ease), box-shadow .25s;
 }
 
 input[type=range]::-moz-range-thumb {
@@ -106,6 +107,20 @@ input[type=range]::-moz-range-thumb {
 	background: linear-gradient(135deg, var(--pcl-cyan), var(--pcl-teal));
 	border: 2px solid var(--pcl-mint);
 	cursor: pointer;
+	transition: transform .25s var(--pcl-ease), box-shadow .25s;
+}
+
+input[type=range]:hover::-webkit-slider-thumb,
+input[type=range]:focus-visible::-webkit-slider-thumb,
+input[type=range]:active::-webkit-slider-thumb {
+	transform: scale(1.18);
+	box-shadow: 0 0 26px rgba(140,235,239,.85);
+}
+
+input[type=range]:hover::-moz-range-thumb,
+input[type=range]:focus-visible::-moz-range-thumb,
+input[type=range]:active::-moz-range-thumb {
+	transform: scale(1.18);
 }
 
 /* Calculator result */

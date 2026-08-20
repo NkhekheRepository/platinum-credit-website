@@ -7,7 +7,7 @@
  */
 ?>
 <!-- wp:group {"className":" pcl-cta pcl-section-tight pcl-reveal","layout":{"type":"default"}} -->
-<div class="wp-block-group pcl-cta pcl-section-tight pcl-reveal">
+<div class="wp-block-group pcl-cta pcl-section-tight pcl-reveal" data-spotlight="hot">
 
 <!-- wp:heading {"textAlign":"center"} -->
 <h2 class="wp-block-heading has-text-align-center">Ready to start dreaming?</h2>

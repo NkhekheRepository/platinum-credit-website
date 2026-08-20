@@ -29,7 +29,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">01</p>
 <!-- /wp:paragraph -->
@@ -50,7 +50,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">02</p>
 <!-- /wp:paragraph -->
@@ -71,7 +71,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">03</p>
 <!-- /wp:paragraph -->
@@ -98,7 +98,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">04</p>
 <!-- /wp:paragraph -->
@@ -119,7 +119,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">05</p>
 <!-- /wp:paragraph -->
@@ -140,7 +140,7 @@
 <!-- wp:column -->
 <div class="wp-block-column">
 <!-- wp:group {"className":"pcl-card","layout":{"type":"constrained"}} -->
-<div class="wp-block-group pcl-card">
+<div class="wp-block-group pcl-card" data-spotlight>
 <!-- wp:paragraph {"className":"pcl-card-num"} -->
 <p class="pcl-card-num">06</p>
 <!-- /wp:paragraph -->
@@ -162,7 +162,7 @@
 <!-- /wp:columns -->
 
 <!-- wp:group {"className":"pcl-rate-band pcl-reveal","layout":{"type":"default"}} -->
-<div class="wp-block-group pcl-rate-band pcl-reveal">
+<div class="wp-block-group pcl-rate-band pcl-reveal" data-spotlight="hot">
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"clamp(1.5rem,3vw,2rem)"}}} -->
 <h3 class="wp-block-heading" style="font-size:clamp(1.5rem,3vw,2rem)">Competitive interest rates — 10% p/a.</h3>
 <!-- /wp:heading -->

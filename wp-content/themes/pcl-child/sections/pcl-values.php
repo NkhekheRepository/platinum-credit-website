@@ -25,12 +25,12 @@
 
 <!-- wp:html -->
 <div class="pcl-why pcl-stagger">
-  <div><h3>Deep Lesotho Expertise</h3><p>We understand the local market, culture, and challenges intimately — products designed with and for the people of Lesotho.</p></div>
-  <div><h3>Inclusive Empowerment</h3><p>Levelling the financial playing field so women, youth, entrepreneurs, and marginalised communities get the tools they need to thrive.</p></div>
-  <div><h3>Integrity &amp; Trust</h3><p>Relationships built on transparency, ethical lending, and accountability — with clear pricing and no hidden fees.</p></div>
-  <div><h3>Innovation for Impact</h3><p>Embracing technology and creative solutions to make finance faster, simpler, and more accessible across Lesotho.</p></div>
-  <div><h3>Resilience &amp; Hustle</h3><p>We champion the grit of small business owners and adapt alongside them — turning challenges into opportunities for growth.</p></div>
-  <div><h3>Strong Governance</h3><p>Robust risk management and full adherence to Central Bank of Lesotho regulations, led by an experienced Board of Directors.</p></div>
+  <div data-spotlight><h3>Deep Lesotho Expertise</h3><p>We understand the local market, culture, and challenges intimately — products designed with and for the people of Lesotho.</p></div>
+  <div data-spotlight><h3>Inclusive Empowerment</h3><p>Levelling the financial playing field so women, youth, entrepreneurs, and marginalised communities get the tools they need to thrive.</p></div>
+  <div data-spotlight><h3>Integrity &amp; Trust</h3><p>Relationships built on transparency, ethical lending, and accountability — with clear pricing and no hidden fees.</p></div>
+  <div data-spotlight><h3>Innovation for Impact</h3><p>Embracing technology and creative solutions to make finance faster, simpler, and more accessible across Lesotho.</p></div>
+  <div data-spotlight><h3>Resilience &amp; Hustle</h3><p>We champion the grit of small business owners and adapt alongside them — turning challenges into opportunities for growth.</p></div>
+  <div data-spotlight><h3>Strong Governance</h3><p>Robust risk management and full adherence to Central Bank of Lesotho regulations, led by an experienced Board of Directors.</p></div>
 </div>
 <!-- /wp:html -->
 

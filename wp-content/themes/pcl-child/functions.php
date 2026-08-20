@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PCL_CHILD_VERSION', '1.4.3' );
+define( 'PCL_CHILD_VERSION', '1.5.0' );
 define( 'PCL_CHILD_DIR', get_stylesheet_directory() );
 define( 'PCL_CHILD_URI', get_stylesheet_directory_uri() );
 
@@ -289,6 +289,7 @@ function pcl_enqueue_js_modules() {
 		'preloader',
 		'nav',
 		'reveal',
+		'spotlight',
 		'hero',
 		'estimator',
 		'affordability',

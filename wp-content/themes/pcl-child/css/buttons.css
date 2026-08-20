@@ -23,6 +23,19 @@ input[type="submit"] {
 	font-family: var(--pcl-body);
 	position: relative;
 	overflow: hidden;
+	-webkit-tap-highlight-color: transparent;
+	user-select: none;
+}
+
+/* Press state */
+.btn:active,
+.pcl-btn:active,
+.wp-block-button__link:active,
+.ast-button:active,
+.button:active,
+input[type="submit"]:active {
+	transform: translateY(1px) scale(.985);
+	transition-duration: .1s;
 }
 
 /* Sheen sweep */
