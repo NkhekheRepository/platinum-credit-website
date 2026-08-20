@@ -21,7 +21,7 @@
 	--pcl-text-inv-soft: #BFD3D9;
 	--pcl-display: 'Marcellus', serif;
 	--pcl-body: 'Figtree', system-ui, sans-serif;
-	--pcl-max: 1200px;
+	--pcl-max: 100vw;
 	--pcl-r: 6px;
 	--pcl-r-lg: 12px;
 	--pcl-ease: cubic-bezier(.16,1,.3,1);
@@ -38,6 +38,10 @@
 	--pcl-space-6: 32px;
 	--pcl-space-7: 48px;
 	--pcl-space-8: 64px;
+	--pcl-white: #fff;
+	--pcl-teal-dark: #2C727A;
+	--pcl-teal-mid:  #307D87;
+	--pcl-teal-light:#8CB9B6;
 }
 
 body,
@@ -91,10 +95,10 @@ h2 {
 
 .eyebrow {
 	font-size: .72rem;
-	letter-spacing: .36em;
+	letter-spacing: .34em;
 	text-transform: uppercase;
 	font-weight: 700;
-	color: var(--pcl-teal);
+	color: var(--pcl-teal-text);
 	display: flex;
 	align-items: center;
 	gap: 14px;
@@ -104,23 +108,8 @@ h2 {
 	content: "";
 	width: 36px;
 	height: 1px;
-	background: linear-gradient(90deg, var(--pcl-cyan), var(--pcl-teal));
+	background: linear-gradient(90deg, var(--pcl-teal-mid), var(--pcl-teal-light));
 	flex: none;
-}
-
-.brand-grad {
-	background: linear-gradient(105deg, var(--pcl-mint) 0%, var(--pcl-cyan) 35%, #fff 52%, var(--pcl-cyan) 70%, var(--pcl-teal) 100%);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-	background-size: 200% 100%;
-}
-
-.grad-purple {
-	background: linear-gradient(120deg, var(--pcl-lilac), var(--pcl-purple));
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
 }
 
 .pcl-gradient-text {
@@ -131,15 +120,14 @@ h2 {
 }
 
 .pcl-brand-grad {
-	background: linear-gradient(105deg, var(--pcl-mint) 0%, var(--pcl-cyan) 35%, #fff 52%, var(--pcl-cyan) 70%, var(--pcl-teal) 100%);
+	background: linear-gradient(135deg, var(--pcl-teal-dark) 0%, var(--pcl-teal-mid) 50%, var(--pcl-teal-light) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
 	background-size: 200% 100%;
 }
 
-section { padding: 120px 0; position: relative; }
-.section-head { max-width: 700px; margin-bottom: 62px; }
+section { position: relative; }
 
 .dark {
 	background: linear-gradient(180deg, var(--pcl-purple-ink), var(--pcl-purple-deep) 130%);
@@ -149,7 +137,7 @@ section { padding: 120px 0; position: relative; }
 .dark .lede { color: var(--pcl-text-inv-soft); }
 .dark .eyebrow { color: var(--pcl-cyan); }
 
-.wrap { max-width: var(--pcl-max); margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: 100vw; margin: 0 auto; padding: 0 28px; }
 
 /* === Full-width / wide alignment helpers === */
 .alignfull {
@@ -257,4 +245,56 @@ section { padding: 120px 0; position: relative; }
 body.page .entry-header,
 body.page-template-default .entry-header {
 	display: none !important;
+}
+
+/* Make PCL hero and dark bands full-width, edge-to-edge within viewport */
+.pcl-hero,
+.pcl-band-navy,
+.pcl-marquee {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Ensure sections inside .ast-container fill the content area */
+.ast-container .pcl-section,
+.ast-container .pcl-band,
+.ast-container .pcl-band-navy {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+/* Force full-width sections at all viewports — override ast-container max-width */
+.pcl-section, .pcl-band, .pcl-band-navy, .pcl-hero, .pcl-marquee {
+	max-width: 100% !important;
+	width: 100% !important;
+}
+
+/* Full-bleed hero — force viewport width */
+.pcl-hero {
+	width: 100vw !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+}
+
+/* Override Astra container max-width for full-width content */
+.ast-container {
+	max-width: 100vw !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.ast-separate-container .site-content > .ast-container {
+	max-width: 100vw !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.pcl-section, .pcl-band, .pcl-band-navy, .pcl-hero, .pcl-marquee {
+	width: 100% !important;
+	max-width: 100% !important;
 }

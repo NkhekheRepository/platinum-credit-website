@@ -63,7 +63,7 @@ input[type="submit"]:active {
 .btn-brand,
 .pcl-btn-brand,
 .wp-block-button__link {
-	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
+\tbackground: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal-dark));
 	color: var(--pcl-purple-ink);
 }
 
@@ -131,4 +131,4 @@ input[type="submit"]:active {
 }
 
 /* Nav CTA sizing */
-.nav-cta { padding: 11px 24px; }
+.pcl-nav-cta { padding: 11px 24px; }

@@ -36,7 +36,7 @@
 }
 
 .pcl-aurora::after {
-	background: radial-gradient(34% 40% at 74% 72%, var(--pcl-teal) 0%, transparent 68%),
+	background: radial-gradient(34% 40% at 74% 72%, var(--pcl-teal-mid) 0%, var(--pcl-teal-light) 68%),
 		radial-gradient(26% 30% at 22% 80%, rgba(140,235,239,.75) 0%, transparent 72%);
 }
 
