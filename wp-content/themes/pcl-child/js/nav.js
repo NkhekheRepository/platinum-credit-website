@@ -53,6 +53,18 @@
 		menuBtn.addEventListener('click', function () {
 			setOpen(!navLinks.classList.contains('open'));
 		});
+		// Outside-tap-to-close
+		navLinks.addEventListener('click', function (e) {
+			if (e.target !== e.currentTarget) return;
+			setOpen(false);
+		});
+		// Staggered link animation
+		var NavLinks = navLinks.querySelectorAll('a');
+		var stagger = 0;
+		NavLinks.forEach(function (a) {
+			a.style.transitionDelay = stagger + 'ms';
+			stagger += 60;
+		});
 		navLinks.querySelectorAll('a').forEach(function (a) {
 			a.addEventListener('click', function () {
 				setOpen(false);
