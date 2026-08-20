@@ -78,4 +78,53 @@
 			requestAnimationFrame(tick);
 		});
 	}
+
+	/* Pointer tilt on cards — fine pointers only, transform-only */
+	if (window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+		var MAX_TILT = 7;
+		document.querySelectorAll('.pcl-card').forEach(function (card) {
+			card.addEventListener('pointermove', function (e) {
+				var r = card.getBoundingClientRect();
+				var px = (e.clientX - r.left) / r.width - 0.5;
+				var py = (e.clientY - r.top) / r.height - 0.5;
+				card.style.transform = 'perspective(800px) rotateX(' + (-py * MAX_TILT).toFixed(2) + 'deg) rotateY(' + (px * MAX_TILT).toFixed(2) + 'deg) translateY(-4px)';
+			});
+			card.addEventListener('pointerleave', function () {
+				card.style.transform = '';
+			});
+		});
+	}
+
+	/* Subtle magnetic pull on primary CTAs — fine pointers only */
+	if (window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+		document.querySelectorAll('.pcl-btn-brand, .pcl-btn-purple, .pcl-hero-ctas .wp-block-button__link').forEach(function (btn) {
+			btn.addEventListener('pointermove', function (e) {
+				var r = btn.getBoundingClientRect();
+				var dx = (e.clientX - (r.left + r.width / 2)) * 0.14;
+				var dy = (e.clientY - (r.top + r.height / 2)) * 0.3;
+				btn.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
+			});
+			btn.addEventListener('pointerleave', function () {
+				btn.style.transform = '';
+			});
+		});
+	}
+
+	/* Steps: tap-to-expand accordion (visual collapse only below 980px via CSS) */
+	var stepsWrap = document.querySelector('.pcl-steps');
+	if (stepsWrap) {
+		stepsWrap.querySelectorAll('.pcl-step').forEach(function (step) {
+			var head = step.querySelector('h3');
+			if (!head) return;
+			head.setAttribute('role', 'button');
+			head.setAttribute('tabindex', '0');
+			head.addEventListener('click', function () {
+				stepsWrap.querySelectorAll('.pcl-step.active').forEach(function (s) { if (s !== step) s.classList.remove('active'); });
+				step.classList.toggle('active');
+			});
+			head.addEventListener('keydown', function (e) {
+				if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); head.click(); }
+			});
+		});
+	}
 })();

@@ -14,7 +14,7 @@
 	background: rgba(202,242,241,.055);
 	border: 1px solid var(--pcl-line-dark);
 	padding: 46px;
-	border-radius: 8px;
+	border-radius: var(--pcl-r-lg);
 	backdrop-filter: blur(8px);
 	box-shadow: 0 40px 90px rgba(0,0,0,.35);
 	position: relative;
@@ -148,6 +148,43 @@ input[type=range]::-moz-range-thumb {
 
 .pcl-sum-row b { color: var(--pcl-mint); font-weight: 600; white-space: nowrap; }
 .pcl-sum-row.emph b { color: var(--pcl-cyan); }
+
+/* Repayment split bar */
+.pcl-repay { margin-top: 20px; }
+
+.pcl-repay-lbls {
+	display: flex;
+	justify-content: space-between;
+	font-size: .68rem;
+	letter-spacing: .18em;
+	text-transform: uppercase;
+	color: var(--pcl-text-inv-soft);
+	margin-bottom: 8px;
+}
+
+.pcl-repay-bar {
+	display: flex;
+	height: 6px;
+	border-radius: 6px;
+	overflow: hidden;
+	background: rgba(202,242,241,.12);
+}
+
+.pcl-repay-bar span {
+	display: block;
+	height: 100%;
+	transition: width .5s var(--pcl-ease);
+}
+
+.pcl-rb-princ {
+	background: linear-gradient(90deg, var(--pcl-cyan), var(--pcl-teal));
+	border-radius: 6px 0 0 6px;
+}
+
+.pcl-rb-int {
+	background: linear-gradient(90deg, var(--pcl-lilac), var(--pcl-purple));
+	border-radius: 0 6px 6px 0;
+}
 
 .pcl-calc-note {
 	font-size: .78rem;

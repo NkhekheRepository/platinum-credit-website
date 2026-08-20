@@ -1,93 +1,88 @@
-( function () {
+/**
+ * PCL Core — Form interaction: validation, AJAX submit, status display.
+ * Uses vanilla JS; depends on jQuery only enqueued by the plugin.
+ */
+
+(function ($) {
 	'use strict';
 
-	var form = document.querySelector( '.pcl-form' );
+	var PCL_CORE = {
 
-	if ( ! form || ! window.pclForm ) {
-		return;
-	}
+		init: function () {
+			$(document).on('submit', '[data-pcl-form]', this.handleSubmit.bind(this));
+		},
 
-	var status = form.querySelector( '.pcl-form-status' );
-	var submit = form.querySelector( 'button[type="submit"]' );
+		handleSubmit: function (e) {
+			e.preventDefault();
 
-	function setStatus( message, type ) {
-		if ( ! status ) {
-			return;
-		}
-		status.textContent = message;
-		status.classList.remove( 'is-success', 'is-error' );
-		if ( type ) {
-			status.classList.add( 'is-' + type );
-		}
-	}
+			var $form = $(e.currentTarget);
+			var $status = $form.find('.pcl-form-status');
+			var $submitBtn = $form.find('button[type="submit"]');
+			var formData = new FormData(e.target);
 
-	function clearErrors() {
-		form.querySelectorAll( '[aria-invalid="true"]' ).forEach( function ( field ) {
-			field.removeAttribute( 'aria-invalid' );
-		} );
-		form.querySelectorAll( '.pcl-field-error' ).forEach( function ( el ) {
-			el.parentNode.removeChild( el );
-		} );
-	}
+			if (!this.validate($form)) {
+				this.showStatus($status, 'is-error', 'Please fill in all required fields.');
+				return;
+			}
 
-	function markError( field, message ) {
-		field.setAttribute( 'aria-invalid', 'true' );
-		var hint = document.createElement( 'p' );
-		hint.className = 'pcl-field-error';
-		hint.textContent = message;
-		field.parentNode.appendChild( hint );
-	}
+			var nonce = formData.get('nonce') || $('input[name=nonce]', $form).val();
+			formData.set('action', 'pcl_submit_form');
+			formData.set('nonce', nonce);
 
-	form.addEventListener( 'submit', function ( event ) {
-		event.preventDefault();
+			$submitBtn.prop('disabled', true).text('Sending…');
 
-		clearErrors();
+			var self = this;
+			$.ajax({
+				url: pclCoreAjax ? pclCoreAjax.ajax_url : '/wp-admin/admin-ajax.php',
+				method: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				dataType: 'json'
+			})
+				.done(function (resp) {
+					if (resp.success) {
+						self.showStatus($status, 'is-success', resp.data.messages[0]);
+						$form[0].reset();
+						window.__pclInst && window.__pclAfford && window.__pclAfford();
+					} else {
+						var msgs = resp.data && resp.data.messages ? resp.data.messages.join(' ') : 'Something went wrong. Please try again.';
+						self.showStatus($status, 'is-error', msgs);
+					}
+				})
+				.fail(function () {
+					self.showStatus($status, 'is-error', 'Connection error. Please try again or call us directly.');
+				})
+				.always(function () {
+					$submitBtn.prop('disabled', false).text('Submit');
+				});
+		},
 
-		var data = new FormData( form );
-		var payload = {};
-		data.forEach( function ( value, key ) {
-			payload[ key ] = value;
-		} );
-
-		submit.setAttribute( 'disabled', 'disabled' );
-		setStatus( '', '' );
-
-		fetch( window.pclForm.restUrl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-WP-Nonce': window.pclForm.nonce
-			},
-			body: JSON.stringify( payload )
-		} )
-			.then( function ( response ) {
-				return response.json().then( function ( body ) {
-					return { ok: response.ok, status: response.status, body: body };
-				} );
-			} )
-			.then( function ( result ) {
-				if ( result.ok && result.body.success ) {
-					setStatus( result.body.message, 'success' );
-					form.reset();
-					return;
+		validate: function ($form) {
+			var valid = true;
+			$form.find('[required]').each(function () {
+				if (!$(this).val().trim()) {
+					valid = false;
+					$(this).attr('aria-invalid', 'true');
+				} else {
+					$(this).removeAttr('aria-invalid');
 				}
+			});
+			return valid;
+		},
 
-				setStatus( result.body.message || 'Something went wrong. Please try again.', 'error' );
+		showStatus: function ($el, cls, msg) {
+			$el.removeClass('is-success is-error')
+				.addClass(cls)
+				.text(msg)
+				.show();
+		}
 
-				if ( result.body.fields ) {
-					Object.keys( result.body.fields ).forEach( function ( key ) {
-						var field = form.querySelector( '[name="' + key + '"]' );
-						if ( field ) {
-							markError( field, result.body.fields[ key ] );
-						}
-					} );
-				}
-			} )
-			.catch( function () {
-				setStatus( 'Unable to send the message. Please try again.', 'error' );
-			} )
-			.finally( function () {
-				submit.removeAttribute( 'disabled' );
-			} );
-	} );
-} )();
+	};
+
+	$(function () {
+		PCL_CORE.init();
+	});
+
+	window.PCL_CORE = PCL_CORE;
+})(jQuery);

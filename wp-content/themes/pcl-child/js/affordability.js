@@ -82,10 +82,39 @@
 	window.__pclAfford = afford;
 	window.__afford = afford;
 
+	var STORE_KEY = 'pcl-afford-v1';
+
+	/* Persist inputs (debounced) */
+	var persistTimer = null;
+	function persist() {
+		clearTimeout(persistTimer);
+		persistTimer = setTimeout(function () {
+			try {
+				var data = {};
+				['afBasic', 'afNett', 'afDebits', 'afLiving', 'afTerm'].forEach(function (id) {
+					var e = el(id);
+					if (e) data[id] = e.value;
+				});
+				localStorage.setItem(STORE_KEY, JSON.stringify(data));
+			} catch (e) {}
+		}, 300);
+	}
+
+	/* Restore persisted inputs */
+	try {
+		var saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+		if (saved) {
+			['afBasic', 'afNett', 'afDebits', 'afLiving', 'afTerm'].forEach(function (id) {
+				var e = el(id);
+				if (e && saved[id] !== undefined) e.value = saved[id];
+			});
+		}
+	} catch (e) {}
+
 	/* Wire inputs */
 	['afBasic', 'afNett', 'afDebits', 'afLiving', 'afTerm'].forEach(function (id) {
 		var e = el(id);
-		if (e) e.addEventListener('input', afford);
+		if (e) { e.addEventListener('input', afford); e.addEventListener('input', persist); }
 	});
 
 	afford();

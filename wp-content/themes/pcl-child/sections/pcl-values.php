@@ -6,7 +6,7 @@
  * Keywords: values, principles, community, integrity, innovation
  */
 ?>
-<!-- wp:group {"className":"pcl-section","id":"values","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-section","id":"values","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-section" id="values">
 
 <!-- wp:group {"className":"pcl-section-head pcl-reveal","layout":{"type":"constrained","contentSize":"700px"}} -->

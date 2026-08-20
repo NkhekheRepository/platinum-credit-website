@@ -6,7 +6,7 @@
  * Keywords: how, process, steps, apply, afford, sign, receive
  */
 ?>
-<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"how","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"how","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-band-navy pcl-section" id="how">
 
 <!-- wp:group {"className":"pcl-section-head pcl-reveal","layout":{"type":"constrained","contentSize":"700px"}} -->

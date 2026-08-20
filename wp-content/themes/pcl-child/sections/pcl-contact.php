@@ -6,7 +6,7 @@
  * Keywords: contact, office, hours, address, phone, email, whatsapp
  */
 ?>
-<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"contact","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"contact","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-band-navy pcl-section" id="contact">
 
 <!-- wp:html -->

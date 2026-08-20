@@ -2,6 +2,7 @@
  * PCL Buttons — All variants with sheen sweep
  */
 .btn,
+.pcl-btn,
 .wp-block-button__link,
 .ast-button,
 .button,
@@ -10,6 +11,7 @@ input[type="submit"] {
 	align-items: center;
 	gap: 10px;
 	padding: 14px 30px;
+	min-height: 44px;
 	border-radius: var(--pcl-r);
 	font-weight: 700;
 	font-size: .85rem;
@@ -25,6 +27,7 @@ input[type="submit"] {
 
 /* Sheen sweep */
 .btn::before,
+.pcl-btn::before,
 .wp-block-button__link::before,
 .ast-button::before {
 	content: "";
@@ -39,17 +42,20 @@ input[type="submit"] {
 }
 
 .btn:hover::before,
+.pcl-btn:hover::before,
 .wp-block-button__link:hover::before,
 .ast-button:hover::before { left: 130%; }
 
 /* Brand button */
 .btn-brand,
+.pcl-btn-brand,
 .wp-block-button__link {
 	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal));
 	color: var(--pcl-purple-ink);
 }
 
 .btn-brand:hover,
+.pcl-btn-brand:hover,
 .wp-block-button__link:hover,
 .ast-button:hover {
 	box-shadow: 0 10px 32px rgba(140,235,239,.4);
@@ -58,24 +64,28 @@ input[type="submit"] {
 }
 
 /* Purple button */
-.btn-purple {
+.btn-purple,
+.pcl-btn-purple {
 	background: linear-gradient(120deg, var(--pcl-purple), var(--pcl-lilac));
 	color: #fff;
 }
 
-.btn-purple:hover {
+.btn-purple:hover,
+.pcl-btn-purple:hover {
 	box-shadow: 0 10px 32px rgba(150,113,189,.4);
 	transform: translateY(-2px);
 }
 
 /* Ghost button */
-.btn-ghost {
+.btn-ghost,
+.pcl-btn-ghost {
 	border-color: rgba(202,242,241,.4);
 	color: var(--pcl-mint);
 	background: transparent;
 }
 
-.btn-ghost:hover {
+.btn-ghost:hover,
+.pcl-btn-ghost:hover {
 	border-color: var(--pcl-cyan);
 	color: #fff;
 	transform: translateY(-2px);

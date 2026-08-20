@@ -1,25 +1,90 @@
-.pcl-form .pcl-honeypot {
-	position: absolute !important;
-	left: -9999px !important;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	opacity: 0;
-	pointer-events: none;
+/**
+ * PCL Core — Form styles.
+ * Mirrors .pcl-form styles used across themes; provides baseline for plugin-rendered forms.
+ */
+
+.pcl-form-wrapper {
+	max-width: 600px;
+	margin: 0 auto;
 }
 
-.pcl-form .wp-block-button__link {
-	border: 0;
-	cursor: pointer;
+.pcl-form-title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--pcl-purple-ink, #2c1a47);
+	margin-bottom: 0.5rem;
 }
 
-.pcl-form button[type="submit"][disabled] {
-	opacity: 0.6;
-	cursor: wait;
+.pcl-form-subtitle {
+	color: var(--pcl-text-secondary, #666);
+	margin-bottom: 1.5rem;
+	font-size: 0.95rem;
 }
 
-.pcl-form .pcl-field-error {
-	font-size: 0.875rem;
+.pcl-form .pcl-field {
+	margin-bottom: 20px;
+}
+
+.pcl-form label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+	color: var(--pcl-purple-ink, #2c1a47);
+}
+
+.pcl-form .pcl-required {
+	color: var(--pcl-teal, #0ea5a8);
+}
+
+.pcl-form input[type="text"],
+.pcl-form input[type="email"],
+.pcl-form input[type="tel"],
+.pcl-form input[type="number"],
+.pcl-form textarea,
+.pcl-form select {
+	width: 100%;
+	border: 1px solid var(--pcl-line, #e2e2e2);
+	border-radius: var(--pcl-r, 6px);
+	padding: 10px 14px;
+	background-color: var(--pcl-white, #fff);
+	color: var(--pcl-text, #333);
+	font-family: var(--pcl-body, -apple-system, BlinkMacSystemFont, sans-serif);
+	font-size: 1rem;
+}
+
+.pcl-form input:focus,
+.pcl-form textarea:focus,
+.pcl-form select:focus {
+	border-color: var(--pcl-cyan, #00bcd4);
+	outline: 2px solid rgba(0, 188, 210, 0.35);
+	outline-offset: 1px;
+}
+
+.pcl-form textarea {
+	resize: vertical;
+	min-height: 100px;
+}
+
+.pcl-form-status {
+	border-radius: var(--pcl-r, 6px);
+	padding: 12px 16px;
+	margin-bottom: 20px;
+	font-weight: 600;
+	display: none;
+}
+
+.pcl-form-status.is-success {
+	background-color: #e7f5ee;
+	color: #1a6b42;
+	border: 1px solid #bfe5cf;
+}
+
+.pcl-form-status.is-error {
+	background-color: #fdecec;
 	color: #a33a3a;
-	margin-top: 4px;
+	border: 1px solid #f5c6c6;
+}
+
+.pcl-form [aria-invalid="true"] {
+	border-color: #c0392b;
 }

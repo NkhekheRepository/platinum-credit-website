@@ -6,7 +6,7 @@
  * Keywords: loans, products, cards, grid, salary, emergency, individual, microenterprise, agri, group
  */
 ?>
-<!-- wp:group {"className":"pcl-section","id":"loans","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-section","id":"loans","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-section" id="loans">
 
 <!-- wp:group {"className":"pcl-section-head pcl-reveal","layout":{"type":"constrained","contentSize":"700px"}} -->

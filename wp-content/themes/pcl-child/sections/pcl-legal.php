@@ -6,7 +6,7 @@
  * Keywords: legal, disclosure, cbl, compliance, footer, regulatory
  */
 ?>
-<!-- wp:group {"className":"pcl-section-tight","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-section-tight","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-section-tight">
 
 <!-- wp:separator {"className":"pcl-divider-wide"} -->

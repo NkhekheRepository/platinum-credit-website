@@ -6,7 +6,7 @@
  * Keywords: stats, counters, numbers
  */
 ?>
-<!-- wp:group {"className":"pcl-band pcl-section-tight","data-count-target":"true","id":"countersBand","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-band pcl-section-tight","data-count-target":"true","id":"countersBand","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-band pcl-section-tight" data-count-target="true" id="countersBand">
 
 <!-- wp:columns {"verticalAlignment":"center","className":"pcl-stagger"} -->

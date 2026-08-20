@@ -6,7 +6,7 @@
  * Keywords: estimator, calculator, loan, slider, repayment
  */
 ?>
-<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"estimator","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-band-navy pcl-section","id":"estimator","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-band-navy pcl-section" id="estimator">
 
 <!-- wp:html -->
@@ -48,6 +48,13 @@
       <div class="pcl-sum-row"><span>Principal</span><b id="pcl-sumPrincipal">M10,000.00</b></div>
       <div class="pcl-sum-row"><span>Indicative rate (reducing balance)</span><b>10.0% p.a.</b></div>
       <div class="pcl-sum-row pcl-emph"><span>Cost of credit</span><b id="pcl-sumCost">M549.91</b></div>
+    </div>
+    <div class="pcl-repay">
+      <div class="pcl-repay-lbls"><span>Principal</span><span>Interest</span></div>
+      <div class="pcl-repay-bar" id="pcl-repay-bar" role="img" aria-label="Share of total repayment between principal and interest">
+        <span class="pcl-rb-princ" aria-valuemin="0" aria-valuemax="100" aria-valuenow="94.8"></span>
+        <span class="pcl-rb-int" aria-valuemin="0" aria-valuemax="100" aria-valuenow="5.2"></span>
+      </div>
     </div>
     <p class="pcl-calc-note">Figures are indicative, calculated on a reducing-balance basis, and exclude initiation and monthly service fees, which will be disclosed in your pre-agreement quotation. Final terms depend on your affordability assessment.</p>
   </div>

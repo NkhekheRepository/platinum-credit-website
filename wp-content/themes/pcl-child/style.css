@@ -511,6 +511,7 @@ body.page-template-default .entry-header {
 	font-family: var(--pcl-body);
 }
 
+
 .pcl-gradient-text {
 	background: linear-gradient(120deg, var(--pcl-lilac), var(--pcl-purple));
 	-webkit-background-clip: text;

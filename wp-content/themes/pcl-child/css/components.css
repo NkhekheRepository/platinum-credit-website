@@ -96,15 +96,6 @@
 }
 
 /* === Motion system === */
-@media (prefers-reduced-motion: reduce) {
-	*, *::before, *::after {
-		animation-duration: 0.01ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.01ms !important;
-		scroll-behavior: auto !important;
-	}
-}
-
 @media (prefers-reduced-motion: no-preference) {
 	.pcl-reveal {
 		opacity: 0;
@@ -189,7 +180,22 @@
 	color: var(--pcl-text-inv);
 	border-radius: var(--pcl-r);
 	padding: clamp(32px, 5vw, 64px);
+	position: relative;
+	overflow: hidden;
 }
+
+.pcl-cta::before {
+	content: "";
+	position: absolute;
+	inset: -40%;
+	pointer-events: none;
+	background:
+		radial-gradient(34% 40% at 22% 20%, rgba(106,64,141,.5) 0%, transparent 70%),
+		radial-gradient(28% 36% at 80% 85%, rgba(140,235,239,.14) 0%, transparent 70%);
+	z-index: 0;
+}
+
+.pcl-cta > * { position: relative; z-index: 1; }
 
 .pcl-cta h2 { color: var(--pcl-mint); }
 

@@ -1,42 +1,54 @@
 <?php
 /**
  * Plugin Name: PCL Core
- * Description: PCL Platinum Credit Ltd — contact form, loan estimator, affordability self-assessment.
- * Version:     1.1.0
- * Author:      PCL
+ * Description: Core shortcodes and utilities for Platinum Credit Ltd — contact forms, CAB calculator, and form validation.
+ * Version: 1.0.0
+ * Author: Platinum Credit Ltd
  * Text Domain: pcl-core
- * Requires PHP: 7.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PCL_PLUGIN_VERSION', '1.1.0' );
-define( 'PCL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'PCL_PLUGIN_URI', plugin_dir_url( __FILE__ ) );
+define( 'PCL_CORE_VERSION', '1.0.0' );
+define( 'PCL_CORE_DIR', plugin_dir_path( __FILE__ ) );
+define( 'PCL_CORE_URI', plugin_dir_url( __FILE__ ) );
 
-// Backward compatibility aliases for classes that reference old constant names
-if ( ! defined( 'PCL_CORE_VERSION' ) ) {
-	define( 'PCL_CORE_VERSION', PCL_PLUGIN_VERSION );
-}
-if ( ! defined( 'PCL_CORE_DIR' ) ) {
-	define( 'PCL_CORE_DIR', PCL_PLUGIN_DIR );
-}
-if ( ! defined( 'PCL_CORE_URI' ) ) {
-	define( 'PCL_CORE_URI', PCL_PLUGIN_URI );
-}
+require_once PCL_CORE_DIR . 'includes/class-pcl-form-handler.php';
+require_once PCL_CORE_DIR . 'includes/class-pcl-shortcodes.php';
 
-require_once PCL_PLUGIN_DIR . 'includes/class-pcl-contact-form.php';
-require_once PCL_PLUGIN_DIR . 'includes/class-pcl-loan-estimator.php';
-require_once PCL_PLUGIN_DIR . 'includes/class-pcl-affordability.php';
-
-function pcl_core_contact_form() {
-	return PCL_Contact_Form::get_instance();
-}
-add_action( 'plugins_loaded', 'pcl_core_contact_form' );
-
-function pcl_core_textdomain() {
+function pcl_core_load_textdomain() {
 	load_plugin_textdomain( 'pcl-core', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-add_action( 'init', 'pcl_core_textdomain' );
+add_action( 'init', 'pcl_core_load_textdomain' );
+
+function pcl_core_enqueue_assets() {
+	if ( is_admin() ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'pcl-core-css',
+		PCL_CORE_URI . 'assets/form.css',
+		array(),
+		PCL_CORE_VERSION
+	);
+
+	wp_enqueue_script(
+		'pcl-core-js',
+		PCL_CORE_URI . 'assets/form.js',
+		array( 'jquery' ),
+		PCL_CORE_VERSION,
+		true
+	);
+
+	wp_localize_script( 'pcl-core-js', 'pclCoreAjax', array(
+		'ajax_url' => admin_url( 'admin-ajax.php' ),
+		'nonce'    => wp_create_nonce( 'pcl_core_nonce' ),
+	) );
+}
+add_action( 'wp_enqueue_scripts', 'pcl_core_enqueue_assets' );
+
+add_action( 'wp_ajax_nopriv_pcl_submit_form', array( 'PCL_Form_Handler', 'submit_form' ) );
+add_action( 'wp_ajax_pcl_submit_form', array( 'PCL_Form_Handler', 'submit_form' ) );

@@ -19,6 +19,7 @@
 @media (prefers-reduced-motion: no-preference) {
 	.pcl-marq-track { animation: pcl-marq 30s linear infinite; }
 	@keyframes pcl-marq { to { transform: translateX(-50%); } }
+	.pcl-marquee:hover .pcl-marq-track { animation-play-state: paused; }
 }
 
 .pcl-marq-track span {

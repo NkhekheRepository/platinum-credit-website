@@ -1,70 +1,259 @@
 /*
  * PCL Responsive — All media queries in one place
+ * Breakpoints: 1100 (laptop), 980 (tablet), 640 (mobile), 544 (small mobile)
  */
+
+/* === Laptop (1100px) === */
+@media (max-width: 1100px) {
+	.pcl-nav-links { gap: 22px; }
+	.pcl-nav-links a { font-size: .8rem; }
+	.pcl-brand-name { font-size: .92rem; letter-spacing: .08em; }
+}
 
 /* === Tablet (980px) === */
 @media (max-width: 980px) {
-	.pcl-cards,
-	.pcl-steps,
-	.pcl-calc,
-	.pcl-contact,
-	.pcl-about,
-	.pcl-afford,
-	.pcl-why {
-		grid-template-columns: 1fr;
-	}
-
-	.pcl-values { grid-template-columns: 1fr 1fr; }
-	.pcl-counters-in { grid-template-columns: 1fr 1fr; gap: 30px; }
-	section { padding: 88px 0; }
-
-	.pcl-hero-meta { flex-wrap: wrap; gap: 26px; }
-	.pcl-hero-grid { grid-template-columns: 1fr; padding: 20px 28px 90px; }
-	.pcl-hero-gem { order: -1; }
-	.pcl-gem-fallback { width: 170px; }
-
-	/* Nav mobile */
+	/* Nav — collapse to hamburger */
 	.pcl-nav-links {
 		display: none;
 		position: absolute;
 		top: 68px;
 		left: 0;
 		right: 0;
-		background: var(--pcl-purple-deep);
+		background: rgba(26,14,41,.97);
+		backdrop-filter: blur(20px);
 		flex-direction: column;
 		padding: 24px 28px;
 		gap: 20px;
 		border-bottom: 1px solid var(--pcl-line-dark);
 		align-items: flex-start;
+		max-height: calc(100svh - 68px);
+		overflow-y: auto;
 	}
-	.pcl-nav-links.open { display: flex; }
-	.pcl-menu-btn { display: block; }
+	.pcl-nav-links.open { display: flex; animation: pcl-navIn .32s var(--pcl-ease); }
+	@keyframes pcl-navIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+	.pcl-nav-links a { padding: 10px 4px; min-height: 44px; display: inline-flex; align-items: center; font-size: .95rem; }
+	.pcl-menu-btn { display: inline-flex; }
 	.pcl-site-nav,
 	.pcl-nav { background: rgba(26,14,41,.86); backdrop-filter: blur(16px); }
+
+	/* Nav CTA full-width in mobile panel */
+	.pcl-nav-links .pcl-nav-cta { width: 100%; justify-content: center; margin-top: 6px; }
+
+	/* Hero — single column, gem first */
+	.pcl-hero-grid {
+		grid-template-columns: 1fr !important;
+		gap: 30px !important;
+		padding: 20px 20px 70px;
+	}
+	.pcl-hero-grid > .wp-block-group:last-child { order: -1; }
+	.pcl-hero-gem { order: -1; }
+	.pcl-gem-wrap { width: min(220px, 60%); }
+	.pcl-gem-fallback { width: min(170px, 55%); }
+	.pcl-hero h1 { font-size: clamp(2rem, 5.5vw, 3.2rem); }
+	.pcl-hero .pcl-sub { font-size: 1.05rem; max-width: none; }
+	.pcl-hero-ctas { flex-direction: row; gap: 12px; }
+	.pcl-hero-ctas .wp-block-button { flex: 1; min-width: 0; }
+	.pcl-hero-ctas .wp-block-button__link { width: 100%; justify-content: center; }
+	.pcl-hero-meta { gap: 24px; margin-top: 40px; }
+	.pcl-hero-meta strong { font-size: 1.3rem; }
+	.pcl-hero { min-height: auto; padding-top: 84px; }
+
+	/* Counters — 2×2 */
+	.pcl-counters-in { grid-template-columns: 1fr 1fr !important; gap: 30px; }
+
+	/* Cards — 2-col */
+	.pcl-cards { grid-template-columns: 1fr 1fr; }
+
+	/* Steps — 2×2 */
+	.pcl-steps { grid-template-columns: 1fr 1fr; }
+
+	/* Values — 2-col */
+	.pcl-why,
+	.pcl-values { grid-template-columns: 1fr 1fr; }
+
+	/* Two-col sections — stack */
+	.pcl-about,
+	.pcl-calc,
+	.pcl-afford,
+	.pcl-contact {
+		grid-template-columns: 1fr;
+		gap: 40px;
+	}
+
+	/* Calculator panel */
+	.pcl-calc-panel { padding: 32px; }
+
+	/* Rate band */
+	.pcl-rate-band { padding: 32px 28px; }
+
+	/* Contact hours panel */
+	.pcl-hours { padding: 28px; }
+
+	/* Affordability panels */
+	.pcl-afford-form { padding: 28px 24px; }
+	.pcl-afford-out { padding: 28px 24px; }
+
+	/* Section spacing */
+	section,
+	.pcl-section { padding: 80px 0; }
+	.pcl-section-tight { padding: clamp(48px, 8vw, 80px) 0; }
+
+	/* Ensure full-bleed outer sections have no horizontal padding */
+	.pcl-band,
+	.pcl-band-navy {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/* Inner content containers keep constrained layout */
+	.pcl-band > .wp-block-group,
+	.pcl-band-navy > .wp-block-group,
+	.pcl-section > .wp-block-group {
+		max-width: var(--pcl-max);
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 28px;
+		padding-right: 28px;
+	}
+
+	/* Footer */
+	.pcl-footer-top { flex-direction: column; gap: 20px; align-items: flex-start; }
+	.pcl-footer-links { flex-wrap: wrap; gap: 16px; }
 }
 
 /* === Mobile (640px) === */
 @media (max-width: 640px) {
-	.pcl-steps,
-	.pcl-why,
-	.pcl-values { grid-template-columns: 1fr; gap: 28px; }
+	/* Hero */
+	.pcl-hero h1 { font-size: clamp(1.5rem, 7.5vw, 2.2rem); }
+	.pcl-hero .pcl-sub { font-size: .95rem; line-height: 1.6; }
+	.pcl-hero-ctas { flex-direction: column; gap: 10px; }
+	.pcl-hero-meta { flex-direction: column; gap: 16px; }
+	.pcl-hero-meta div { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,.2); padding-top: 14px; }
 
-	.pcl-rate-band { padding: 32px 28px; }
-	.pcl-counters-in { grid-template-columns: 1fr 1fr; }
+	/* Cards, steps, values — single column */
+	.pcl-cards { grid-template-columns: 1fr; gap: 20px; }
+	.pcl-steps { grid-template-columns: 1fr; gap: 24px; }
+	.pcl-why,
+	.pcl-values { grid-template-columns: 1fr; gap: 16px; }
+
+	/* Counters stay 2-col */
+	.pcl-counters-in { grid-template-columns: 1fr 1fr; gap: 20px; padding: 36px 20px; }
+
+	/* Rate band */
+	.pcl-rate-band { padding: 28px 20px; flex-direction: column; text-align: center; }
+	.pcl-rate-band .btn { width: 100%; justify-content: center; }
+
+	/* Marquee */
+	.pcl-marq-track span { font-size: 1rem; letter-spacing: .2em; gap: 40px; }
+
+	/* Touch targets — min 44px */
+	.btn,
+	.wp-block-button__link,
+	.pcl-menu-btn,
+	.pcl-step-btn,
+	input[type="submit"] {
+		min-height: 44px;
+		padding: 12px 24px;
+	}
+
+	/* Section spacing */
+	section,
+	.pcl-section { padding: 56px 0; }
+	.pcl-section-tight { padding: 32px 0; }
+
+	/* Full-bleed on mobile */
+	.pcl-band,
+	.pcl-band-navy {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.pcl-band > .wp-block-group,
+	.pcl-band-navy > .wp-block-group {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	/* Section headings */
+	.pcl-section-head { margin-bottom: 36px; }
+	.pcl-section-head h2 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
 }
 
 /* === Small mobile (544px) === */
 @media (max-width: 544px) {
-	.pcl-card,
-	.pcl-contact-item { padding: 20px 16px; }
+	/* Hero — compact */
+	.pcl-hero {
+		min-height: auto;
+		padding: 60px 0 36px;
+	}
+	.pcl-hero-grid {
+		padding: 12px 16px 32px;
+		gap: 20px !important;
+	}
+	.pcl-hero h1 { margin: 18px 0 16px; }
+	.pcl-gem-wrap { width: min(160px, 55%); }
+	.pcl-gem-fallback { width: min(130px, 50%); }
 
-	.pcl-cta { padding: 28px 20px; }
+	/* Cards */
+	.pcl-card { padding: 28px 20px 24px; }
+	.pcl-card-num { font-size: 5rem; top: -16px; }
 
-	.pcl-hero { padding: 60px 0; }
-	.pcl-hero-meta { flex-direction: column; gap: 12px; }
+	/* Contact */
+	.pcl-contact-item { padding: 16px 14px; }
+	.pcl-c-list { gap: 0; }
+	.pcl-c-list li { padding: 16px 0; }
 
+	/* CTA */
+	.pcl-cta { padding: 28px 16px; }
+
+	/* Affordability */
 	.pcl-afford-form,
-	.pcl-afford-out { padding: 28px 20px; }
+	.pcl-afford-out { padding: 20px 16px; }
 
-	.pcl-calc-panel { padding: 24px; }
+	/* Calculator */
+	.pcl-calc-panel { padding: 20px 16px; }
+	.pcl-calc-row label { font-size: .7rem; }
+	.pcl-calc-result .pcl-monthly,
+	.pcl-calc-result .amt { font-size: 1.8rem; }
+
+	/* Footer */
+	.pcl-site-footer,
+	.pcl-footer { padding: 40px 0 28px; }
+	.pcl-footer-reg,
+	.pcl-f-reg { font-size: .72rem; }
+	.pcl-footer-bottom,
+	.pcl-f-bottom { flex-direction: column; gap: 12px; align-items: flex-start; }
+
+	/* WhatsApp float — smaller on mobile */
+	.pcl-whatsapp-float { width: 50px; height: 50px; right: 14px; bottom: 14px; }
+	.pcl-whatsapp-float svg { width: 24px; height: 24px; }
+
+	/* Values cards */
+	.pcl-why > div,
+	.pcl-values > div { padding: 24px 18px; }
+
+	/* About milestones */
+	.pcl-milestones { padding-left: 20px; }
+	.pcl-milestones li::before { left: -20px; width: 9px; height: 9px; }
+
+	/* Nav */
+	.pcl-nav-in { padding: 0 16px; }
+	.pcl-brand-name { font-size: .82rem; }
+	.pcl-brand-name small { font-size: .48rem; letter-spacing: .3em; }
+
+	/* Full-bleed outer sections — no horizontal padding on mobile */
+	.pcl-band,
+	.pcl-band-navy,
+	.pcl-section,
+	.pcl-section-tight {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	/* Inner content padding */
+	.pcl-section > .wp-block-group,
+	.pcl-band > .wp-block-group,
+	.pcl-band-navy > .wp-block-group {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
 }

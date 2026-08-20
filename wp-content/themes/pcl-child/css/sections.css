@@ -120,17 +120,36 @@
 .pcl-card {
 	background: #fff;
 	border: 1px solid var(--pcl-line);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	padding: 44px 36px 40px;
 	position: relative;
 	overflow: hidden;
 	transition: transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s;
 	transform-style: preserve-3d;
+	will-change: transform;
 }
+
+/* Gradient border on hover (mask technique) */
+.pcl-card::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+	background: linear-gradient(135deg, var(--pcl-cyan), var(--pcl-lilac));
+	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask-composite: xor;
+	mask-composite: exclude;
+	opacity: 0;
+	transition: opacity .45s var(--pcl-ease);
+	pointer-events: none;
+}
+
+.pcl-card:hover::before { opacity: 1; }
 
 .pcl-card:hover {
 	transform: translateY(-8px);
-	box-shadow: 0 28px 60px rgba(106,64,141,.18);
+	box-shadow: var(--pcl-shadow-md);
 }
 
 .pcl-card-num {
@@ -182,7 +201,7 @@
 .pcl-rate-band {
 	margin-top: 64px;
 	background: linear-gradient(120deg, var(--pcl-purple), var(--pcl-lilac));
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	padding: 44px 48px;
 	display: flex;
 	justify-content: space-between;
@@ -246,6 +265,25 @@
 .pcl-step h3 { font-size: 1.2rem; margin: 14px 0 10px; color: var(--pcl-mint); }
 .pcl-step p { font-size: .93rem; color: var(--pcl-text-inv-soft); }
 
+/* Steps accordion on narrow screens (JS toggles .active) */
+@media (max-width: 980px) {
+	.pcl-step { border: 1px solid var(--pcl-line-dark); border-radius: var(--pcl-r-lg); padding: 20px 22px; }
+	.pcl-step::before { display: none; }
+	.pcl-step h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 14px; margin: 4px 0 0; }
+	.pcl-step h3::after {
+		content: "+";
+		font-family: var(--pcl-body);
+		font-size: 1.3rem;
+		font-weight: 400;
+		color: var(--pcl-cyan);
+		transition: transform .3s var(--pcl-ease);
+		flex: none;
+	}
+	.pcl-step.active h3::after { transform: rotate(45deg); }
+	.pcl-step p { max-height: 0; overflow: hidden; opacity: 0; margin: 0; transition: max-height .4s var(--pcl-ease), opacity .35s, margin .35s; }
+	.pcl-step.active p { max-height: 260px; opacity: 1; margin-top: 12px; }
+}
+
 /* === Values === */
 .pcl-why,
 .pcl-values {
@@ -258,7 +296,7 @@
 .pcl-values > div {
 	background: #fff;
 	border: 1px solid var(--pcl-line);
-	border-radius: var(--pcl-r);
+	border-radius: var(--pcl-r-lg);
 	padding: 38px 34px;
 	transition: transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
 	position: relative;
@@ -294,4 +332,14 @@
 .pcl-values p { font-size: .93rem; color: var(--pcl-text-soft); }
 
 /* Section heading */
-.pcl-section-head { max-width: 700px; margin-bottom: 62px; }
+.pcl-section-head {
+	max-width: 700px;
+	margin: 0 auto 62px;
+	text-align: center;
+}
+
+.pcl-section-head.h-left {
+	text-align: left;
+	margin-left: 0;
+	margin-right: 0;
+}

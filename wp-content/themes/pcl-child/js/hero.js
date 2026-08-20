@@ -39,4 +39,27 @@
 			shardBox.appendChild(s);
 		}
 	}
+
+	/* Scroll-linked parallax: gem + shards drift at different rates.
+	   Desktop only, transform-only, respects prefers-reduced-motion. */
+	if (window.matchMedia('(min-width: 981px) and (prefers-reduced-motion: no-preference)').matches) {
+		var gem = document.querySelector('.pcl-hero-gem');
+		var hero = document.querySelector('.pcl-hero');
+		if (gem && hero) {
+			var ticking = false;
+			var onScroll = function () {
+				if (ticking) return;
+				ticking = true;
+				requestAnimationFrame(function () {
+					var y = window.scrollY;
+					if (y < hero.offsetHeight) {
+						gem.style.transform = 'translateY(' + (y * 0.16) + 'px)';
+						if (shardBox) shardBox.style.transform = 'translateY(' + (y * -0.08) + 'px)';
+					}
+					ticking = false;
+				});
+			};
+			window.addEventListener('scroll', onScroll, { passive: true });
+		}
+	}
 })();

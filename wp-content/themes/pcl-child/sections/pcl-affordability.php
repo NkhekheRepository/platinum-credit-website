@@ -6,7 +6,7 @@
  * Keywords: affordability, assessment, income, expenses, bank statement
  */
 ?>
-<!-- wp:group {"className":"pcl-section","id":"affordability","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-section","id":"affordability","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-section" id="affordability">
 
 <!-- wp:group {"className":"pcl-section-head pcl-reveal","layout":{"type":"constrained","contentSize":"700px"}} -->

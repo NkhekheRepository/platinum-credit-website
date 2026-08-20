@@ -24,14 +24,20 @@
 			]
 		},
 		"layout": {
+			"type": "constrained",
 			"contentSize": "720px",
-			"wideSize": "1200px"
+			"wideSize": "1200px",
+			"allowFloatingElements": true,
+			"allowBreakInside": true,
+			"allowGap": true
 		},
 		"spacing": {
 			"units": [ "px", "em", "rem", "%", "vw" ],
 			"spacingScale": {
 				"steps": 2
-			}
+			},
+			"customPadding": true,
+			"customMargin": true
 		},
 		"typography": {
 			"fontFamilies": [
@@ -69,6 +75,9 @@
 				{ "slug": "x-large", "size": "clamp(1.75rem, 3vw, 2.25rem)", "name": "X-Large" },
 				{ "slug": "xx-large", "size": "clamp(2rem, 3.8vw, 3rem)", "name": "XX-Large" }
 			]
+		},
+		"border": {
+			"allowedBorderColors": [ "pcl-mint", "pcl-cyan", "pcl-teal", "pcl-lilac", "pcl-purple", "pcl-purple-ink", "pcl-purple-deep", "pcl-white" ]
 		}
 	},
 	"styles": {

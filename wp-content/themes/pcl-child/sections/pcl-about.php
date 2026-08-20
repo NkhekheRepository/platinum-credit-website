@@ -6,7 +6,7 @@
  * Keywords: about, who we are, gem, milestones, history
  */
 ?>
-<!-- wp:group {"className":"pcl-section","id":"about","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<!-- wp:group {"className":"pcl-section","id":"about","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-section" id="about">
 
 <!-- wp:group {"className":"pcl-about","layout":{"type":"default"}} -->
