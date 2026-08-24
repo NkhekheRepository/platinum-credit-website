@@ -19,8 +19,8 @@
 	--pcl-text-soft: #5A4F66;
 	--pcl-text-inv: #F2FBFB;
 	--pcl-text-inv-soft: #BFD3D9;
-	--pcl-display: 'Marcellus', serif;
-	--pcl-body: 'Figtree', system-ui, sans-serif;
+	--pcl-display: 'Marcellus', 'Marcellus Fallback', serif;
+	--pcl-body: 'Figtree', 'Figtree Fallback', system-ui, sans-serif;
 	--pcl-max: 100vw;
 	--pcl-r: 6px;
 	--pcl-r-lg: 12px;
@@ -42,6 +42,24 @@
 	--pcl-teal-dark: #2C727A;
 	--pcl-teal-mid:  #307D87;
 	--pcl-teal-light:#8CB9B6;
+}
+
+/* Font fallback with size-adjust — prevents CLS when Google Fonts load (Core Web Vitals) */
+@font-face {
+	font-family: 'Figtree Fallback';
+	src: local('Arial');
+	size-adjust: 106%;
+	ascent-override: 94%;
+	descent-override: 24%;
+	line-gap-override: 0%;
+}
+@font-face {
+	font-family: 'Marcellus Fallback';
+	src: local('Times New Roman');
+	size-adjust: 105%;
+	ascent-override: 88%;
+	descent-override: 22%;
+	line-gap-override: 0%;
 }
 
 body,

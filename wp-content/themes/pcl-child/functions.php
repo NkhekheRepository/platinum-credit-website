@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PCL_CHILD_VERSION', '1.5.0' );
+define( 'PCL_CHILD_VERSION', '1.6.0' );
 define( 'PCL_CHILD_DIR', get_stylesheet_directory() );
 define( 'PCL_CHILD_URI', get_stylesheet_directory_uri() );
 
@@ -108,6 +108,18 @@ function pcl_enqueue_google_fonts() {
 	);
 }
 add_action( 'wp_enqueue_scripts', 'pcl_enqueue_google_fonts' );
+
+/* ── Resource hints: preconnect Google Fonts (LCP fix) ─────────────── */
+function pcl_resource_hints() {
+	if ( is_admin() ) {
+		return;
+	}
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	echo '<link rel="dns-prefetch" href="//fonts.googleapis.com">' . "\n";
+	echo '<link rel="dns-prefetch" href="//fonts.gstatic.com">' . "\n";
+}
+add_action( 'wp_head', 'pcl_resource_hints', 0 );
 
 /* ── Editor style ───────────────────────────────────────────────────── */
 function pcl_editor_assets() {
@@ -307,6 +319,22 @@ function pcl_enqueue_js_modules() {
 }
 add_action( 'wp_enqueue_scripts', 'pcl_enqueue_js_modules' );
 
+/* ── Defer non-critical JS (Core Web Vitals) ────────────────────────── */
+function pcl_defer_scripts( $tag, $handle ) {
+	if ( is_admin() ) {
+		return $tag;
+	}
+	// Keep nav instant; defer everything else (spotlight/reveal/hero/tools are below-fold or progressive)
+	$defer_handles = array( 'pcl-preloader', 'pcl-reveal', 'pcl-spotlight', 'pcl-hero', 'pcl-estimator', 'pcl-affordability' );
+	if ( in_array( $handle, $defer_handles, true ) ) {
+		if ( false === strpos( $tag, ' defer' ) ) {
+			$tag = str_replace( ' src', ' defer src', $tag );
+		}
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'pcl_defer_scripts', 10, 2 );
+
 /* ── WhatsApp float button ──────────────────────────────────────────── */
 function pcl_whatsapp_float() {
 	if ( is_admin() || is_pcl_screen() ) {
@@ -326,49 +354,152 @@ function pcl_whatsapp_float() {
 }
 add_action( 'wp_footer', 'pcl_whatsapp_float' );
 
-/* ── SEO: Open Graph + canonical + JSON-LD ──────────────────────────── */
+/* ── SEO helpers: keyword-mapped titles + descriptions ─────────────── */
+function pcl_seo_map() {
+	return array(
+		'home' => array(
+			'title' => 'Platinum Credit Ltd — Licensed Loans in Lesotho | Re Lora Le Uena',
+			'desc'  => 'Platinum Credit Ltd — 100% Basotho-owned, CBL-licensed Tier 2 lender in Maseru. Affordable personal, business & MSME loans across Lesotho. Transparent pricing.',
+		),
+		'about' => array(
+			'title' => 'About Us — Basotho-Owned CBL Lender | Platinum Credit Lesotho',
+			'desc'  => 'About Platinum Credit Ltd — 100% Basotho-owned, CBL-licensed Tier 2 microfinance institution. Responsible, affordable credit for Basotho individuals and MSMEs.',
+		),
+		'products' => array(
+			'title' => 'Loan Products — Personal & Business | Platinum Credit Lesotho',
+			'desc'  => 'Explore Platinum Credit loan products — personal loans, MSME business loans & asset finance in Lesotho. CBL-regulated, transparent pricing, flexible terms.',
+		),
+		'estimator' => array(
+			'title' => 'Loan Calculator — Estimate Repayments | Platinum Credit Lesotho',
+			'desc'  => 'Free loan calculator — estimate monthly repayments, total interest and cost for Platinum Credit loans in Lesotho. Instant, transparent results before you apply.',
+		),
+		'affordability' => array(
+			'title' => 'Affordability Check — Can You Afford a Loan? | Platinum Credit',
+			'desc'  => 'Free affordability assessment — check income, expenses and existing debt to confirm you can repay responsibly. Required for every CBL-regulated loan in Lesotho.',
+		),
+		'contact' => array(
+			'title' => 'Contact Us — Thulo Building Maseru | Platinum Credit Lesotho',
+			'desc'  => 'Contact Platinum Credit Ltd at Thulo Building, Maseru. Call +266 22324412, WhatsApp +266 69457676 or email info@pcl.co.ls. Directions & opening hours.',
+		),
+		'privacy-policy' => array(
+			'title' => 'Privacy Policy — How We Protect Your Data | Platinum Credit Ltd',
+			'desc'  => 'Platinum Credit Ltd privacy policy — how we collect, use and protect your personal data under Lesotho law and the Financial Consumer Protection Act 7 of 2022.',
+		),
+		'terms-of-service' => array(
+			'title' => 'Terms of Service — Loan Terms & Conditions | Platinum Credit Ltd',
+			'desc'  => 'Terms and conditions for Platinum Credit Ltd loans — interest, fees, cooling-off, early settlement and borrower rights under Lesotho financial law.',
+		),
+		'terms' => array(
+			'title' => 'Terms of Service — Loan Terms & Conditions | Platinum Credit Ltd',
+			'desc'  => 'Terms and conditions for Platinum Credit Ltd loans — interest, fees, cooling-off, early settlement and borrower rights under Lesotho financial law.',
+		),
+	);
+}
+
+function pcl_get_seo_for_current_page() {
+	$map  = pcl_seo_map();
+	$site = 'Platinum Credit Ltd';
+
+	if ( is_front_page() ) {
+		return $map['home'];
+	}
+	if ( is_singular( 'page' ) ) {
+		$slug = get_post_field( 'post_name', get_queried_object_id() );
+		if ( isset( $map[ $slug ] ) ) {
+			return $map[ $slug ];
+		}
+		// Fallback: page title + auto description
+		$title = get_the_title() . ' | ' . $site . ' Lesotho';
+		$raw   = get_the_excerpt() ?: get_the_content();
+		$desc  = wp_trim_words( wp_strip_all_tags( $raw ), 28, '' );
+		if ( mb_strlen( $desc ) > 160 ) {
+			$desc = mb_substr( $desc, 0, 157 ) . '…';
+		}
+		if ( ! $desc ) {
+			$desc = $map['home']['desc'];
+		}
+		return array( 'title' => $title, 'desc' => $desc );
+	}
+	return null;
+}
+
+/* ── SEO: keyword-optimized document title (<title>) ────────────────── */
+function pcl_document_title( $title ) {
+	if ( is_admin() ) {
+		return $title;
+	}
+	$seo = pcl_get_seo_for_current_page();
+	if ( $seo && isset( $seo['title'] ) ) {
+		return $seo['title'];
+	}
+	return $title;
+}
+add_filter( 'pre_get_document_title', 'pcl_document_title', 10 );
+
+/* ── SEO: Open Graph + canonical + JSON-LD (enhanced) ───────────────── */
 function pcl_seo_meta() {
 	if ( is_admin() ) {
 		return;
 	}
 
-	$site_name   = 'Platinum Credit Ltd';
-	$site_url    = home_url();
-	$desc_default = 'Platinum Credit Ltd is a 100% Basotho-owned, Tier 2 CBL-licensed microfinance institution in Maseru, offering competitive interest rates for individuals and MSMEs across Lesotho.';
+	$seo = pcl_get_seo_for_current_page();
+	if ( ! $seo ) {
+		return;
+	}
+
+	$site_name    = 'Platinum Credit Ltd';
+	$site_url     = home_url();
+	$desc_default = 'Platinum Credit Ltd — 100% Basotho-owned, CBL-licensed Tier 2 lender in Maseru. Affordable personal, business & MSME loans across Lesotho with transparent pricing.';
+
+	$title = $seo['title'];
+	$desc  = $seo['desc'];
+	if ( mb_strlen( $desc ) > 160 ) {
+		$desc = mb_substr( $desc, 0, 157 ) . '…';
+	}
 
 	if ( is_front_page() ) {
-		$title = 'Platinum Credit Ltd — Re Lora Le Uena | Maseru, Lesotho';
-		$desc  = $desc_default;
-		$url   = $site_url;
+		$url = $site_url . '/';
 	} elseif ( is_singular( 'page' ) ) {
-		$title = get_the_title() . ' — ' . $site_name;
-		$desc  = wp_trim_words( wp_strip_all_tags( get_the_excerpt() ?: get_the_content() ), 30, '…' );
-		$url   = get_permalink();
+		$url = get_permalink();
 	} else {
-		return;
+		$url = $site_url . '/';
 	}
 
 	$og_image = $site_url . '/wp-content/themes/pcl-child/assets/og-image.png';
 
 	echo '<link rel="canonical" href="' . esc_url( $url ) . "\" />\n";
 	echo '<meta name="description" content="' . esc_attr( $desc ) . "\" />\n";
+	echo '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />' . "\n";
+	echo '<meta name="author" content="' . esc_attr( $site_name ) . '" />' . "\n";
 	echo '<meta property="og:type" content="website" />' . "\n";
 	echo '<meta property="og:site_name" content="' . esc_attr( $site_name ) . '" />' . "\n";
 	echo '<meta property="og:title" content="' . esc_attr( $title ) . '" />' . "\n";
 	echo '<meta property="og:description" content="' . esc_attr( $desc ) . '" />' . "\n";
 	echo '<meta property="og:url" content="' . esc_url( $url ) . '" />' . "\n";
 	echo '<meta property="og:image" content="' . esc_url( $og_image ) . '" />' . "\n";
-	echo '<meta property="og:locale" content="en_LS" />' . "\n";
+	echo '<meta property="og:image:width" content="1200" />' . "\n";
+	echo '<meta property="og:image:height" content="630" />' . "\n";
+	echo '<meta property="og:image:alt" content="' . esc_attr( $site_name . ' — Re Lora Le Uena | Licensed microloans in Lesotho' ) . '" />' . "\n";
+	echo '<meta property="og:image:type" content="image/png" />' . "\n";
+	echo '<meta property="og:locale" content="en_GB" />' . "\n";
+	echo '<meta property="og:locale:alternate" content="en_US" />' . "\n";
 	echo '<meta name="twitter:card" content="summary_large_image" />' . "\n";
 	echo '<meta name="twitter:title" content="' . esc_attr( $title ) . '" />' . "\n";
 	echo '<meta name="twitter:description" content="' . esc_attr( $desc ) . '" />' . "\n";
+	echo '<meta name="twitter:image" content="' . esc_url( $og_image ) . '" />' . "\n";
+	echo '<meta name="twitter:image:alt" content="' . esc_attr( $site_name . ' — Licensed microloans in Lesotho' ) . '" />' . "\n";
 
 	$jsonld = array(
 		'@context'    => 'https://schema.org',
 		'@type'       => 'FinancialService',
+		'@id'         => $site_url . '/#organization',
 		'name'        => 'Platinum Credit Ltd',
+		'alternateName' => 'PCL Lesotho',
+		'slogan'      => 'Re Lora Le Uena',
 		'description' => $desc_default,
-		'url'         => $site_url,
+		'url'         => $site_url . '/',
+		'logo'        => $site_url . '/wp-content/themes/pcl-child/assets/logo-lockup.svg',
+		'image'       => $og_image,
 		'telephone'   => array( '+26622324412', '+26652011000' ),
 		'email'       => 'info@pcl.co.ls',
 		'address'     => array(
@@ -376,15 +507,38 @@ function pcl_seo_meta() {
 			'streetAddress'   => 'Thulo Building',
 			'addressLocality' => 'Maseru',
 			'postalCode'      => '100',
+			'addressRegion'   => 'Maseru',
 			'addressCountry'  => 'LS',
 		),
-		'areaServed'  => array(
-			'@type' => 'Country',
-			'name'  => 'Lesotho',
+		'geo'         => array(
+			'@type'     => 'GeoCoordinates',
+			'latitude'  => '-29.3167',
+			'longitude' => '27.4833',
 		),
-		'founder'     => array(
-			'@type' => 'Organization',
-			'name'  => 'Platinum Credit Ltd',
+		'areaServed'  => array(
+			array(
+				'@type' => 'Country',
+				'name'  => 'Lesotho',
+			),
+			array(
+				'@type' => 'City',
+				'name'  => 'Maseru',
+			),
+		),
+		'priceRange'  => '$$',
+		'openingHoursSpecification' => array(
+			array(
+				'@type'     => 'OpeningHoursSpecification',
+				'dayOfWeek' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ),
+				'opens'     => '08:00',
+				'closes'    => '17:00',
+			),
+			array(
+				'@type'     => 'OpeningHoursSpecification',
+				'dayOfWeek' => array( 'Saturday' ),
+				'opens'     => '08:00',
+				'closes'    => '13:00',
+			),
 		),
 		'sameAs'      => array(
 			'https://www.facebook.com/profile.php?id=61576228466083',
@@ -396,3 +550,75 @@ function pcl_seo_meta() {
 	echo '<script type="application/ld+json">' . wp_json_encode( $jsonld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
 }
 add_action( 'wp_head', 'pcl_seo_meta', 1 );
+
+/* ── SEO: BreadcrumbList (inner pages) ───────────────────────────────── */
+function pcl_breadcrumb_jsonld() {
+	if ( is_admin() || is_front_page() || ! is_singular( 'page' ) ) {
+		return;
+	}
+	$site_url = home_url();
+	$crumbs   = array(
+		array(
+			'@type'    => 'ListItem',
+			'position' => 1,
+			'name'     => 'Home',
+			'item'     => $site_url . '/',
+		),
+		array(
+			'@type'    => 'ListItem',
+			'position' => 2,
+			'name'     => get_the_title(),
+			'item'     => get_permalink(),
+		),
+	);
+	$data = array(
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $crumbs,
+	);
+	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'pcl_breadcrumb_jsonld', 2 );
+
+/* ── SEO: Service schema for Products page ────────────────────────────── */
+function pcl_service_schema() {
+	if ( is_admin() || ! is_page( 'products' ) ) {
+		return;
+	}
+	$site_url = home_url();
+	$services = array(
+		array( 'name' => 'Personal Loans', 'desc' => 'Affordable personal loans for Basotho individuals — fast approval, transparent pricing, flexible repayment terms.' ),
+		array( 'name' => 'Business & MSME Loans', 'desc' => 'Working capital and growth loans for micro, small and medium enterprises across Lesotho.' ),
+		array( 'name' => 'Asset Finance', 'desc' => 'Finance for equipment, vehicles and productive assets — build your business with structured repayments.' ),
+	);
+	$items = array();
+	foreach ( $services as $svc ) {
+		$items[] = array(
+			'@type'       => 'Service',
+			'serviceType' => $svc['name'],
+			'name'        => $svc['name'],
+			'description' => $svc['desc'],
+			'provider'    => array( '@id' => $site_url . '/#organization' ),
+			'areaServed'  => array( '@type' => 'Country', 'name' => 'Lesotho' ),
+		);
+	}
+	$data = array(
+		'@context' => 'https://schema.org',
+		'@graph'   => $items,
+	);
+	echo '<script type="application/ld+json">' . wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'pcl_service_schema', 3 );
+
+/* ── SEO: robots.txt — ensure sitemap is declared ────────────────────── */
+function pcl_robots_txt( $output, $public ) {
+	if ( '0' === (string) $public ) {
+		return $output;
+	}
+	$sitemap = 'Sitemap: ' . esc_url( home_url( '/wp-sitemap.xml' ) );
+	if ( false === strpos( $output, 'Sitemap:' ) ) {
+		$output .= "\n" . $sitemap . "\n";
+	}
+	return $output;
+}
+add_filter( 'robots_txt', 'pcl_robots_txt', 10, 2 );
