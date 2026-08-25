@@ -643,9 +643,6 @@ cat > "$TMPDIR/home.html" << 'BLOCKS'
 <!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size">Platinum Credit Ltd is a 100% Basotho-owned microfinance institution and registered credit provider, licensed and supervised by the Central Bank of Lesotho (Tier 2). Every application undergoes an affordability assessment — we will not extend credit an assessment indicates you cannot reasonably repay. A full pre-agreement statement of cost is provided before any funds are advanced, and a statutory cooling-off period and early-settlement options apply in line with the Financial Consumer Protection Act No. 7 of 2022. Interest rates and fees shown on this site are indicative; your binding cost of credit is set out in your personalised quotation. Borrow responsibly.</p>
 <!-- /wp:paragraph -->
-<!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"#6A5F78"}}} -->
-<p class="has-small-font-size" style="color:#6A5F78">CBL Registration No.: [insert once verified against the CBL listing]</p>
-<!-- /wp:paragraph -->
 <!-- wp:separator {"className":"pcl-divider-wide"} -->
 <hr class="wp-block-separator has-alpha-channel-opacity pcl-divider-wide"/>
 <!-- /wp:separator -->
@@ -1347,9 +1344,6 @@ cat > "$TMPDIR/legal.html" << 'BLOCKS'
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
 <p>We are committed to responsible lending practices. We assess every application against your verified income and existing commitments to ensure the loan is affordable. Borrow responsibly.</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph {"fontSize":"small","style":{"color":{"text":"#6A5F78"}}} -->
-<p class="has-small-font-size" style="color:#6A5F78">CBL Registration No.: [insert once verified against the CBL listing]</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:group -->
