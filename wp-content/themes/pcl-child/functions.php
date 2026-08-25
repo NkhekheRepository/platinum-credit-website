@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PCL_CHILD_VERSION', '1.6.2' );
+define( 'PCL_CHILD_VERSION', '1.6.3' );
 define( 'PCL_CHILD_DIR', get_stylesheet_directory() );
 define( 'PCL_CHILD_URI', get_stylesheet_directory_uri() );
 

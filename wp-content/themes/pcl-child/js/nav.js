@@ -116,4 +116,22 @@
 			}
 		});
 	});
+
+	/* Hash rescue — if an in-page anchor target doesn't exist on this page,
+	   navigate to the page that owns it (fixes pattern CTAs on inner pages). */
+	var PCL_HASH_PAGES = {
+		contact: 'contact/',
+		estimator: 'estimator/',
+		affordability: 'affordability/',
+		loans: 'products/'
+	};
+	document.addEventListener('click', function (e) {
+		var link = e.target.closest('a[href^="#"]');
+		if (!link) return;
+		var id = (link.getAttribute('href') || '').slice(1);
+		if (id && !document.getElementById(id) && Object.prototype.hasOwnProperty.call(PCL_HASH_PAGES, id)) {
+			e.preventDefault();
+			window.location.href = '/' + PCL_HASH_PAGES[id];
+		}
+	});
 })();
