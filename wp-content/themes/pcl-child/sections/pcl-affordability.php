@@ -72,7 +72,7 @@
       <li><span>Instalment as % of gross salary</span><strong id="pcl-afPct">0.0%</strong></li>
       <li><span>Your estimator instalment</span><strong id="pcl-afReq">M879.16</strong></li>
     </ul>
-    <a href="#contact" class="pcl-btn pcl-btn-purple" style="margin-top:26px;width:100%;justify-content:center">Book Your Full Assessment</a>
+    <a href="#contact" class="pcl-btn pcl-btn-brand" style="margin-top:26px;width:100%;justify-content:center">Book Your Full Assessment</a>
     <p class="pcl-calc-note">Guide only, using a 30% of gross affordability benchmark and PCL's 10% p.a. rate. Your formal assessment at our offices verifies payslips, bank statements, and existing commitments, and always takes precedence.</p>
   </div>
 </div>

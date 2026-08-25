@@ -38,6 +38,17 @@ input[type="submit"]:active {
 	transition-duration: .1s;
 }
 
+/* Keyboard focus ring — accessibility */
+.btn:focus-visible,
+.pcl-btn:focus-visible,
+.wp-block-button__link:focus-visible,
+.ast-button:focus-visible,
+.button:focus-visible,
+input[type="submit"]:focus-visible {
+	outline: 3px solid var(--pcl-cyan);
+	outline-offset: 3px;
+}
+
 /* Sheen sweep */
 .btn::before,
 .pcl-btn::before,
@@ -62,16 +73,16 @@ input[type="submit"]:active {
 /* Brand button */
 .btn-brand,
 .pcl-btn-brand,
-.wp-block-button__link {
-\tbackground: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-teal-dark));
+.wp-block-button .wp-block-button__link {
+	background: linear-gradient(120deg, var(--pcl-cyan), var(--pcl-mint));
 	color: var(--pcl-purple-ink);
 }
 
 .btn-brand:hover,
 .pcl-btn-brand:hover,
-.wp-block-button__link:hover,
+.wp-block-button .wp-block-button__link:hover,
 .ast-button:hover {
-	box-shadow: 0 10px 32px rgba(140,235,239,.4);
+	box-shadow: 0 10px 32px rgba(140,235,239,.45);
 	transform: translateY(-2px);
 	color: var(--pcl-purple-ink);
 }

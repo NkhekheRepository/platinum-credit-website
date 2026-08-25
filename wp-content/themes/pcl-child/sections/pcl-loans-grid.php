@@ -164,7 +164,7 @@
 <!-- wp:group {"className":"pcl-rate-band pcl-reveal","layout":{"type":"default"}} -->
 <div class="wp-block-group pcl-rate-band pcl-reveal" data-spotlight="hot">
 <!-- wp:heading {"level":3,"style":{"typography":{"fontSize":"clamp(1.5rem,3vw,2rem)"}}} -->
-<h3 class="wp-block-heading" style="font-size:clamp(1.5rem,3vw,2rem)">Competitive interest rates — 10% p/a.</h3>
+<h3 class="wp-block-heading" style="font-size:clamp(1.5rem,3vw,2rem)">Competitive interest rates — <span class="pcl-rate-highlight">10% p/a</span>.</h3>
 <!-- /wp:heading -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">

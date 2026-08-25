@@ -230,7 +230,7 @@ cat > "$TMPDIR/home.html" << 'BLOCKS'
 <!-- wp:group {"className":"pcl-rate-band pcl-reveal","layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group pcl-rate-band pcl-reveal">
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Competitive interest rates — 10% p/a.</h3>
+<h3 class="wp-block-heading">Competitive interest rates — <span class="pcl-rate-highlight">10% p/a</span>.</h3>
 <!-- /wp:heading -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">
@@ -920,7 +920,7 @@ cat > "$TMPDIR/products.html" << 'BLOCKS'
 <!-- wp:group {"className":"pcl-rate-band pcl-reveal","layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group pcl-rate-band pcl-reveal">
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Competitive interest rates — 10% p/a.</h3>
+<h3 class="wp-block-heading">Competitive interest rates — <span class="pcl-rate-highlight">10% p/a</span>.</h3>
 <!-- /wp:heading -->
 <!-- wp:buttons -->
 <div class="wp-block-buttons">

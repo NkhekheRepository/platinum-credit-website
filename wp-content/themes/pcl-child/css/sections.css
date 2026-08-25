@@ -213,6 +213,13 @@
 	overflow: hidden;
 }
 
+/* Bright display text on the purple band — white heading, cyan rate highlight */
+.pcl-rate-band h3 { color: #fff; }
+.pcl-rate-band .pcl-rate-highlight {
+	color: var(--pcl-cyan);
+	text-shadow: 0 0 24px rgba(140,235,239,.45);
+}
+
 .pcl-rate-band::before {
 	content: "";
 	position: absolute;
