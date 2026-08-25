@@ -55,7 +55,7 @@
 	position: fixed;
 	right: 22px;
 	bottom: 22px;
-	z-index: 90;
+	z-index: 120;
 	width: 58px;
 	height: 58px;
 	border-radius: 50%;
@@ -75,6 +75,11 @@
 }
 
 .pcl-whatsapp-float svg { width: 30px; height: 30px; }
+
+/* Keep Astra's scroll-to-top clear of the WhatsApp float (stacked, never overlapping) */
+#ast-scroll-top.ast-scroll-to-top-right {
+	bottom: 96px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
 	.pcl-whatsapp-float::after {

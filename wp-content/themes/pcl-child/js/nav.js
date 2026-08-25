@@ -116,12 +116,4 @@
 			}
 		});
 	});
-
-	/* Back to top */
-	var toTop = document.querySelector('.pcl-to-top');
-	if (toTop) {
-		toTop.addEventListener('click', function () {
-			window.scrollTo({ top: 0, behavior: 'smooth' });
-		});
-	}
 })();

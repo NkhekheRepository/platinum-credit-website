@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PCL_CHILD_VERSION', '1.6.0' );
+define( 'PCL_CHILD_VERSION', '1.6.1' );
 define( 'PCL_CHILD_DIR', get_stylesheet_directory() );
 define( 'PCL_CHILD_URI', get_stylesheet_directory_uri() );
 
@@ -215,9 +215,6 @@ function pcl_custom_footer() {
 	      </span>
 	      <span>Maseru &middot; Kingdom of Lesotho</span>
 	    </div>
-	    <button class="pcl-to-top" type="button" aria-label="<?php esc_attr_e( 'Back to top', 'pcl-child' ); ?>" title="<?php esc_attr_e( 'Back to top', 'pcl-child' ); ?>">
-	      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-	    </button>
 	  </div>
 	</footer>
 	<?php
